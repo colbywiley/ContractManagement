@@ -10,6 +10,14 @@ public with sharing class ContractNotificationService {
 
     // Email subject prefixes for easy identification in inboxes
     private static final String SUBJECT_PREFIX = 'YGSF Contract: ';
+    private static final String DO_NOT_REPLY = '\n\n---\nDo not reply to this email. Please log in to Salesforce and use the Contract Action Panel to take action.';
+
+    /**
+     * @description Returns the URL to a contract record.
+     */
+    private static String getContractUrl(Id contractId) {
+        return URL.getOrgDomainURL().toExternalForm() + '/' + contractId;
+    }
 
     /**
      * @description Sends submission confirmation to the Staff Liaison and a review
@@ -25,6 +33,8 @@ public with sharing class ContractNotificationService {
         List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage>();
         String contractTitle = getContractTitle(contract);
 
+        String contractUrl = getContractUrl(contract.Id);
+
         // Confirmation to Staff Liaison
         if (contract.Staff_Liaison__c != null) {
             emails.add(buildEmail(
@@ -33,7 +43,8 @@ public with sharing class ContractNotificationService {
                 'Your contract "' + contractTitle + '" has been successfully submitted for review. ' +
                 'You will receive notifications as the contract progresses through the approval process.\n\n' +
                 'Contract Status: ' + safeString(contract.Status__c) + '\n' +
-                'Approval Path: ' + safeString(contract.Approval_Path__c)
+                'Approval Path: ' + safeString(contract.Approval_Path__c) + '\n\n' +
+                'View Contract: ' + contractUrl + DO_NOT_REPLY
             ));
         }
 
@@ -49,7 +60,7 @@ public with sharing class ContractNotificationService {
                 'Contract Subject: ' + safeString(contract.Contract_Subject_Picklist__c) + '\n' +
                 'Contract Value: ' + formatCurrency(contract.Contract_Value__c) + '\n' +
                 'Legal Review Timing: ' + safeString(contract.Legal_Review_Required__c) + '\n\n' +
-                'Please complete your review within the established SLA timeframe.'
+                'Please log in to Salesforce to begin your review:\n' + contractUrl + DO_NOT_REPLY
             ));
         }
 
@@ -72,7 +83,8 @@ public with sharing class ContractNotificationService {
             SUBJECT_PREFIX + 'Legal Review Complete - ' + contractTitle,
             'The legal review for your contract "' + contractTitle + '" has been completed.\n\n' +
             'Legal Review Date: ' + formatDate(contract.Legal_Review_Date__c) + '\n' +
-            'The contract will now proceed to the next step in the approval process.'
+            'The contract will now proceed to the next step in the approval process.\n\n' +
+            'View Contract: ' + getContractUrl(contract.Id) + DO_NOT_REPLY
         );
 
         sendEmails(new List<Messaging.SingleEmailMessage>{ email });
@@ -100,7 +112,8 @@ public with sharing class ContractNotificationService {
             'Contract Value: ' + formatCurrency(contract.Contract_Value__c) + '\n' +
             'Counterparty: ' + safeString(contract.Counterparty_Name__c) + '\n' +
             'Approval Path: ' + safeString(contract.Approval_Path__c) + '\n\n' +
-            'Please review and approve or reject this contract at your earliest convenience.'
+            'Please log in to Salesforce to review and take action:\n' +
+            getContractUrl(contract.Id) + DO_NOT_REPLY
         );
 
         sendEmails(new List<Messaging.SingleEmailMessage>{ email });
@@ -126,7 +139,8 @@ public with sharing class ContractNotificationService {
             'End Date: ' + formatDate(contract.End_Date__c) + '\n' +
             'Auto-Renew: ' + (contract.Auto_Renew__c ? 'Yes' : 'No') + '\n' +
             'Counterparty: ' + safeString(contract.Counterparty_Name__c) + '\n\n' +
-            'Please take appropriate action to renew or allow the contract to expire.';
+            'Please take appropriate action to renew or allow the contract to expire.\n\n' +
+            'View Contract: ' + getContractUrl(contract.Id) + DO_NOT_REPLY;
 
         // Notify Staff Liaison
         if (contract.Staff_Liaison__c != null) {
@@ -167,7 +181,8 @@ public with sharing class ContractNotificationService {
             'Current Status: ' + safeString(contract.Status__c) + '\n' +
             'Submission Date: ' + formatDate(contract.Submission_Date__c) + '\n' +
             'Counterparty: ' + safeString(contract.Counterparty_Name__c) + '\n\n' +
-            'Immediate attention is required to bring this contract back on track.';
+            'Immediate attention is required to bring this contract back on track.\n\n' +
+            'View Contract: ' + getContractUrl(contract.Id) + DO_NOT_REPLY;
 
         // Collect unique recipients
         Set<Id> notified = new Set<Id>();
