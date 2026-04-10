@@ -63,11 +63,13 @@ public with sharing class YGSFContractTriggerHandler {
     }
 
     /**
-     * @description After insert: auto-create signatory records based on subject configuration.
+     * @description After insert: no-op. Signatory creation is handled by the
+     * Contract_After_Insert_Flow which calls ContractSubjectConfigInvocable
+     * (applies config first, then creates signatories with correct field values).
      * @param newContracts The newly inserted YGSF_Contract__c records (with Ids)
      */
     public void afterInsert(List<YGSF_Contract__c> newContracts) {
-        ContractSignatoryService.createSignatories(newContracts);
+        // Signatories created by Contract_After_Insert_Flow -> ContractSubjectConfigInvocable
     }
 
     /**
