@@ -106,6 +106,26 @@
         <enabled>true</enabled>
     </classAccesses>
     <!-- YGSF_Contract__c editable fields -->
+        <fieldPermissions>
+        <editable>false</editable>
+        <field>YGSF_Contract__c.Days_In_Review__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>YGSF_Contract__c.Is_Overdue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>YGSF_Contract__c.Legal_Review_Required_Before__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>YGSF_Contract__c.Value_Threshold__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>YGSF_Contract__c.VP_Approver__c</field>
