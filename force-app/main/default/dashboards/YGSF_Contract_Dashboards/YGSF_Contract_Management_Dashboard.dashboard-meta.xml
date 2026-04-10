@@ -22,6 +22,9 @@
             <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
             <componentType>Table</componentType>
             <header>Expiring in 90 Days</header>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
             <report>YGSF_Contract_Reports/Expiring_Contracts_Next_90_Days</report>
             <showValues>true</showValues>
             <sortBy>RowLabelAscending</sortBy>
@@ -42,6 +45,9 @@
             <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
             <componentType>Table</componentType>
             <header>Pending Legal Review</header>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
             <report>YGSF_Contract_Reports/Contracts_Pending_Legal_Review</report>
             <showValues>true</showValues>
             <sortBy>RowLabelAscending</sortBy>
@@ -62,6 +68,9 @@
             <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
             <componentType>Table</componentType>
             <header>Pending Signatures</header>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
             <report>YGSF_Contract_Reports/Contracts_Pending_Signatures</report>
             <showValues>true</showValues>
             <sortBy>RowLabelAscending</sortBy>

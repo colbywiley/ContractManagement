@@ -17,20 +17,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>records:recordDetail</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>runtime_sales_activities:activityPanel</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>main</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
                 <componentName>c:contractComplianceDashboard</componentName>
             </componentInstance>
         </itemInstances>
@@ -57,6 +43,15 @@
         <itemInstances>
             <componentInstance>
                 <componentName>c:contractRenewalManager</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>force:relatedListContainer</componentName>
             </componentInstance>
         </itemInstances>
         <name>sidebar</name>

@@ -6,16 +6,7 @@
                 <componentName>c:contractIntakeLauncher</componentName>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>flexipage:recentItems</componentName>
-                <componentInstanceProperties>
-                    <name>sobjectType</name>
-                    <value>YGSF_Contract__c</value>
-                </componentInstanceProperties>
-            </componentInstance>
-        </itemInstances>
-        <name>left</name>
+        <name>region1</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -24,11 +15,11 @@
                 <componentName>runtime_sales_activities:todayTaskContainer</componentName>
             </componentInstance>
         </itemInstances>
-        <name>right</name>
+        <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <name>header</name>
+        <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
     <masterLabel>YGSF Contract Management Home</masterLabel>

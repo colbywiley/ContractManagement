@@ -395,7 +395,6 @@
             <fieldText>Auto Renew</fieldText>
             <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>false</isRequired>
         </fields>
         <fields>
             <name>Renewal_Term_Months</name>
