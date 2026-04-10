@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>allInternalUsers</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Contract_Title__c</field>
+        <field>Contract_Type__c</field>
+        <field>Contract_Subject_Picklist__c</field>
+        <field>Contract_Value__c</field>
+        <field>Staff_Liaison__c</field>
+        <field>Approval_Path__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Legal_Reviewer__c</name>
+                <type>relatedUserField</type>
+            </approver>
+        </assignedApprover>
+        <label>Legal Review</label>
+        <name>Legal_Review</name>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>SVP_Approver__c</name>
+                <type>relatedUserField</type>
+            </approver>
+        </assignedApprover>
+        <label>SVP Approval</label>
+        <name>SVP_Approval</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Officer_Approver__c</name>
+                <type>relatedUserField</type>
+            </approver>
+        </assignedApprover>
+        <label>Officer Approval</label>
+        <name>Officer_Approval</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <description>Approval process for contracts requiring Legal Department review, SVP signature, and Association Officer signature (Section 3.2.1)</description>
+    <entryCriteria>
+        <criteriaItems>
+            <field>YGSF_Contract__c.Approval_Path__c</field>
+            <operation>equals</operation>
+            <value>Section 3.2.1 - SVP and Officer</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>Set_Status_Pending_Signatures</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Set_Status_Rejected</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>Set_Status_Legal_Review</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Stamp_Submission_Date</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Section 3.2.1 Approval</label>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

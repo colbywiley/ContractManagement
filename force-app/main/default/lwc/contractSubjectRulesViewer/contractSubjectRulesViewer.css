@@ -1,0 +1,32 @@
+:host {
+    display: block;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--slds-g-color-border-base-1, #e5e5e5);
+    margin-bottom: 0.5rem;
+}
+
+.path-description {
+    font-style: italic;
+    padding: 0.5rem;
+    background-color: var(--slds-g-color-neutral-base-95, #f3f3f3);
+    border-radius: 0.25rem;
+}
+
+.badge-required lightning-badge,
+.badge-required {
+    --sds-c-badge-color-background: var(--slds-g-color-warning-base-60, #dd7a01);
+    --sds-c-badge-text-color: #fff;
+}
+
+.slds-list_dotted {
+    padding-left: 1.5rem;
+}
+
+.slds-list_dotted li {
+    padding: 0.15rem 0;
+}

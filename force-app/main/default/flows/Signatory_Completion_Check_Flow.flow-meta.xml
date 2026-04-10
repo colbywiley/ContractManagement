@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <description>Record-Triggered Flow that fires after a Contract_Signatory__c record is updated when the Signed__c field changes to true. Queries all required signatories for the parent contract and checks if all have signed. If all required signatures are complete, updates the parent contract Status__c to Fully Executed.</description>
+    <interviewLabel>Signatory Completion Check {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Signatory Completion Check</label>
+    <processType>AutoLaunchedFlow</processType>
+    <status>Active</status>
+
+    <!-- Variables -->
+    <variables>
+        <name>varAllSigned</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>true</booleanValue>
+        </value>
+    </variables>
+
+    <!-- Start: Record-Triggered on Contract_Signatory__c After Update, Signed__c changed to true -->
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_All_Required_Signatories</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Signed__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Signed__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Contract_Signatory__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+
+    <!-- Get All Required Signatories for the Parent Contract -->
+    <recordLookups>
+        <name>Get_All_Required_Signatories</name>
+        <label>Get All Required Signatories</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <connector>
+            <targetReference>Loop_Check_Signatories</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Contract__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Contract__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Required__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Contract_Signatory__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+
+    <!-- Loop Through Required Signatories -->
+    <loops>
+        <name>Loop_Check_Signatories</name>
+        <label>Check Each Required Signatory</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <collectionReference>Get_All_Required_Signatories</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Check_If_Signed</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Decision_All_Signed</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+
+    <!-- Decision: Is this signatory signed? -->
+    <decisions>
+        <name>Check_If_Signed</name>
+        <label>Is This Signatory Signed?</label>
+        <locationX>352</locationX>
+        <locationY>398</locationY>
+        <defaultConnector>
+            <targetReference>Set_Not_All_Signed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Signed</defaultConnectorLabel>
+        <rules>
+            <name>Is_Signed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Check_Signatories.Signed__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Check_Signatories</targetReference>
+            </connector>
+            <label>Signed</label>
+        </rules>
+    </decisions>
+
+    <!-- Assignment: Set varAllSigned to false -->
+    <assignments>
+        <name>Set_Not_All_Signed</name>
+        <label>Set Not All Signed</label>
+        <locationX>528</locationX>
+        <locationY>518</locationY>
+        <assignmentItems>
+            <assignToReference>varAllSigned</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Check_Signatories</targetReference>
+        </connector>
+    </assignments>
+
+    <!-- Decision: Are all required signatories signed? -->
+    <decisions>
+        <name>Decision_All_Signed</name>
+        <label>All Required Signatories Signed?</label>
+        <locationX>176</locationX>
+        <locationY>518</locationY>
+        <defaultConnectorLabel>Not All Signed</defaultConnectorLabel>
+        <rules>
+            <name>All_Signed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varAllSigned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Contract_Fully_Executed</targetReference>
+            </connector>
+            <label>All Signed</label>
+        </rules>
+    </decisions>
+
+    <!-- Update Parent Contract to Fully Executed -->
+    <recordUpdates>
+        <name>Update_Contract_Fully_Executed</name>
+        <label>Update Contract to Fully Executed</label>
+        <locationX>176</locationX>
+        <locationY>638</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Contract__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Fully Executed</stringValue>
+            </value>
+        </inputAssignments>
+        <object>YGSF_Contract__c</object>
+    </recordUpdates>
+</Flow>

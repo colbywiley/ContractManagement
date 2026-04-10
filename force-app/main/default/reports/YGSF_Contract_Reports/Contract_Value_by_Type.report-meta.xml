@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Contract_Title__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Contract_Value__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Status__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Location__c</field>
+    </columns>
+    <aggregates>
+        <calculatedFormula>YGSF_Contract__c.Contract_Value__c:SUM</calculatedFormula>
+        <datatype>currency</datatype>
+        <description>Sum of contract values</description>
+        <developerName>Total_Contract_Value</developerName>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Total Contract Value</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <description>Summary of contract values grouped by contract type</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>YGSF_Contract__c.Contract_Type__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Contract Value by Type</name>
+    <reportType>CustomEntity$YGSF_Contract__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

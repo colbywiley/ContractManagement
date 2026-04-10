@@ -8,21 +8,9 @@
         <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
-            <value>
-                <fullName>Legal</fullName>
-                <default>false</default>
-                <label>Legal</label>
-            </value>
-            <value>
-                <fullName>Signatory</fullName>
-                <default>false</default>
-                <label>Signatory</label>
-            </value>
-            <value>
-                <fullName>Staff Liaison</fullName>
-                <default>false</default>
-                <label>Staff Liaison</label>
-            </value>
+            <value><fullName>Legal</fullName><default>false</default><label>Legal</label></value>
+            <value><fullName>Signatory</fullName><default>false</default><label>Signatory</label></value>
+            <value><fullName>Staff Liaison</fullName><default>false</default><label>Staff Liaison</label></value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

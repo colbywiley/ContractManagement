@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Services_Before_Execution</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Services_Started_Before_Execution__c, NOT(ISPICKVAL(Status__c, "Fully Executed")), NOT(ISPICKVAL(Status__c, "Active")), NOT(ISPICKVAL(Approval_Path__c, "Section 3.2.3 - ED and VP")), NOT(ISPICKVAL(Approval_Path__c, "Section 3.2.4 - Branch ED Only")))</errorConditionFormula>
+    <errorMessage>Services cannot start before the contract is fully executed, per YGSF Contract Policy Section 5.2.</errorMessage>
+</ValidationRule>

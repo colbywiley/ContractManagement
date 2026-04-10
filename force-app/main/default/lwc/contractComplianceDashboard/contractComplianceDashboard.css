@@ -1,0 +1,26 @@
+:host {
+    display: block;
+}
+
+.compliance-item {
+    padding: 0.25rem 0;
+}
+
+.success lightning-badge {
+    --sds-c-badge-color-background: var(--slds-g-color-success-base-50, #2e844a);
+    --sds-c-badge-text-color: #fff;
+}
+
+.warning lightning-badge {
+    --sds-c-badge-color-background: var(--slds-g-color-warning-base-60, #dd7a01);
+    --sds-c-badge-text-color: #fff;
+}
+
+.error lightning-badge {
+    --sds-c-badge-color-background: var(--slds-g-color-error-base-40, #ea001e);
+    --sds-c-badge-text-color: #fff;
+}
+
+lightning-progress-bar {
+    margin-bottom: 0.5rem;
+}

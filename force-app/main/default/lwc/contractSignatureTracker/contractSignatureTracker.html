@@ -1,0 +1,40 @@
+<template>
+    <lightning-card title="Signature Tracker" icon-name="standard:document">
+        <lightning-button
+            slot="actions"
+            label="Refresh"
+            icon-name="utility:refresh"
+            onclick={handleRefresh}>
+        </lightning-button>
+
+        <template if:true={isLoading}>
+            <div class="slds-p-around_medium">
+                <lightning-spinner alternative-text="Loading signatories" size="small"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:false={isLoading}>
+            <template if:true={hasSignatories}>
+                <div class="slds-p-horizontal_medium slds-p-top_small slds-p-bottom_x-small">
+                    <span class="slds-text-body_small slds-text-color_weak">{signatureProgress}</span>
+                </div>
+
+                <lightning-datatable
+                    key-field="id"
+                    data={signatoryData}
+                    columns={columns}
+                    hide-checkbox-column
+                    onrowaction={handleRowAction}
+                    show-row-number-column>
+                </lightning-datatable>
+            </template>
+
+            <template if:false={hasSignatories}>
+                <div class="slds-p-around_medium slds-text-align_center slds-text-color_weak">
+                    <lightning-icon icon-name="utility:info" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                    No signatories have been assigned to this contract.
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>

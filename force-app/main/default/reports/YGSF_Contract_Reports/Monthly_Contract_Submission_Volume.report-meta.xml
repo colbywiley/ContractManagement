@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Contract_Title__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Contract_Type__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Status__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Staff_Liaison__c</field>
+    </columns>
+    <aggregates>
+        <calculatedFormula>RowCount</calculatedFormula>
+        <datatype>number</datatype>
+        <description>Total submissions per month</description>
+        <developerName>Submission_Count</developerName>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Submission Count</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <description>Monthly volume of contract submissions</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Month</dateGranularity>
+        <field>YGSF_Contract__c.Submission_Date__c</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <name>Monthly Contract Submission Volume</name>
+    <reportType>CustomEntity$YGSF_Contract__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>YGSF_Contract__c.Submission_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

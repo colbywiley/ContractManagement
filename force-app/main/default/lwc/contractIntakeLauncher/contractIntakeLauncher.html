@@ -1,0 +1,53 @@
+<template>
+    <lightning-card title={cardTitle} icon-name="standard:contract">
+        <div class="slds-p-around_medium">
+            <p class="slds-text-body_regular slds-m-bottom_medium">{cardDescription}</p>
+
+            <div class="slds-grid slds-gutters_small slds-grid_align-center">
+                <div class="slds-col">
+                    <lightning-button
+                        variant="brand"
+                        label={buttonLabel}
+                        icon-name={buttonIcon}
+                        onclick={handleLaunchFlow}
+                        class="slds-m-right_small launch-button">
+                    </lightning-button>
+                    <lightning-button
+                        variant="neutral"
+                        label="Open in Full Page"
+                        icon-name="utility:new_window"
+                        onclick={handleNavigateToFlow}
+                        disabled={isNavigating}>
+                    </lightning-button>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+
+    <!-- Flow Modal -->
+    <template if:true={isFlowOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={handleCloseFlow}>
+                        <lightning-icon icon-name="utility:close" alternative-text="Close"
+                                        size="small" variant="inverse"></lightning-icon>
+                    </button>
+                    <h2 class="slds-modal__title slds-hyphenate">Contract Intake Form</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium flow-container">
+                    <lightning-flow
+                        flow-api-name="Contract_Intake_Flow"
+                        flow-input-variables={flowInputVariables}
+                        onstatuschange={handleFlowStatusChange}>
+                    </lightning-flow>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={handleCloseFlow}></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>
