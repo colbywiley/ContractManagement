@@ -155,8 +155,8 @@ export default class ContractSLATimer extends LightningElement {
 
     buildTimer(id, label, slaRule, startDateStr, businessDays, completedDateStr) {
         const now = new Date();
-        const startDate = startDateStr ? new Date(startDateStr) : null;
-        const completedDate = completedDateStr ? new Date(completedDateStr) : null;
+        const startDate = startDateStr ? this.parseDateAsLocal(startDateStr) : null;
+        const completedDate = completedDateStr ? this.parseDateAsLocal(completedDateStr) : null;
         const deadline = startDate ? this.addBusinessDays(startDate, businessDays) : null;
 
         let statusClass = 'on-track';
@@ -249,6 +249,26 @@ export default class ContractSLATimer extends LightningElement {
             progressValue,
             timerClass: `timer-card ${statusClass}`
         };
+    }
+
+    /**
+     * Parses a date string (YYYY-MM-DD) as a local timezone date at 8 AM (start of business).
+     * Salesforce Date fields have no time component and are returned as YYYY-MM-DD strings.
+     * Using new Date("YYYY-MM-DD") parses as UTC midnight, which shifts the day in western
+     * timezones. This method ensures the date is treated as the local business day start.
+     */
+    parseDateAsLocal(dateStr) {
+        if (!dateStr) return null;
+        const parts = dateStr.split('-');
+        if (parts.length === 3) {
+            return new Date(
+                parseInt(parts[0], 10),
+                parseInt(parts[1], 10) - 1,
+                parseInt(parts[2], 10),
+                8, 0, 0, 0
+            );
+        }
+        return new Date(dateStr);
     }
 
     addBusinessDays(startDate, numDays) {
