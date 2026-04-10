@@ -183,8 +183,7 @@ export default class ContractActionPanel extends LightningElement {
       // Force record page refresh
       eval("$A.get('e.force:refreshView').fire()");
     } catch (error) {
-      const errorMsg =
-        error?.body?.message || error?.message || "An unexpected error occurred";
+      const errorMsg = this.extractErrorMessage(error);
       this.showToast("Error", errorMsg, "error");
     } finally {
       this.isProcessing = false;
