@@ -17,7 +17,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>force:recordDetailWithInlineEdit</componentName>
+                <componentName>force:recordDetail</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>

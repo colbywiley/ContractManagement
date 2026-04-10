@@ -19,7 +19,7 @@
         <calculatedFormula>RowCount</calculatedFormula>
         <datatype>number</datatype>
         <description>Total number of contracts</description>
-        <developerName>Contract_Count</developerName>
+        <developerName>FORMULA_Contract_Count</developerName>
         <isActive>true</isActive>
         <isCrossBlock>false</isCrossBlock>
         <masterLabel>Contract Count</masterLabel>
@@ -29,7 +29,7 @@
         <calculatedFormula>YGSF_Contract__c.Contract_Value__c:SUM</calculatedFormula>
         <datatype>currency</datatype>
         <description>Total contract value</description>
-        <developerName>Total_Value</developerName>
+        <developerName>FORMULA_Total_Value</developerName>
         <isActive>true</isActive>
         <isCrossBlock>false</isCrossBlock>
         <masterLabel>Total Value</masterLabel>

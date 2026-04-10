@@ -29,7 +29,7 @@
         <inputParameters>
             <name>emailAddresses</name>
             <value>
-                <elementReference>Get_Parent_Contract.Staff_Liaison__r.Email</elementReference>
+                <elementReference>Get_Staff_Liaison_User.Email</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -98,7 +98,7 @@ Please contact the counterparty to obtain an updated COI and upload it to the co
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Send_COI_Reminder</targetReference>
+                <targetReference>Get_Staff_Liaison_User</targetReference>
             </connector>
             <label>Parent Found</label>
         </rules>
@@ -180,7 +180,30 @@ Please contact the counterparty to obtain an updated COI and upload it to the co
         <queriedFields>Contract_Title__c</queriedFields>
         <queriedFields>Counterparty_Name__c</queriedFields>
         <queriedFields>Staff_Liaison__c</queriedFields>
-        <queriedFields>Staff_Liaison__r.Email</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+
+    <!-- Get Staff Liaison User for email -->
+    <recordLookups>
+        <name>Get_Staff_Liaison_User</name>
+        <label>Get Staff Liaison User</label>
+        <locationX>352</locationX>
+        <locationY>698</locationY>
+        <connector>
+            <targetReference>Send_COI_Reminder</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Parent_Contract.Staff_Liaison__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Email</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
 

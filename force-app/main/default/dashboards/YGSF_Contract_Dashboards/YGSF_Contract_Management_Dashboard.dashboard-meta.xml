@@ -4,6 +4,9 @@
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
     <backgroundStartColor>#FFFFFF</backgroundStartColor>
     <dashboardFilters>
+        <dashboardFilterColumns>
+            <column>YGSF_Contract__c.Status__c</column>
+        </dashboardFilterColumns>
         <dashboardFilterOptions>
             <operator>equals</operator>
             <values>Active</values>

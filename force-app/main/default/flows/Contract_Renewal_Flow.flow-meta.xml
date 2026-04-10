@@ -34,7 +34,6 @@
         <name>renewalTypeChoices</name>
         <dataType>Picklist</dataType>
         <displayField>Renewal_Type__c</displayField>
-        <object>Contract_Renewal__c</object>
         <picklistField>Renewal_Type__c</picklistField>
         <picklistObject>Contract_Renewal__c</picklistObject>
     </dynamicChoiceSets>
@@ -43,7 +42,6 @@
         <name>paymentMethodChoices</name>
         <dataType>Picklist</dataType>
         <displayField>Payment_Method__c</displayField>
-        <object>YGSF_Contract__c</object>
         <picklistField>Payment_Method__c</picklistField>
         <picklistObject>YGSF_Contract__c</picklistObject>
     </dynamicChoiceSets>

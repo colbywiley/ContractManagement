@@ -8,7 +8,7 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>force:recentItems</componentName>
+                <componentName>flexipage:recentItems</componentName>
                 <componentInstanceProperties>
                     <name>sobjectType</name>
                     <value>YGSF_Contract__c</value>

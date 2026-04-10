@@ -284,11 +284,6 @@
     <!-- Contract_Document__c editable fields -->
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contract_Document__c.Document_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Contract_Document__c.File_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>

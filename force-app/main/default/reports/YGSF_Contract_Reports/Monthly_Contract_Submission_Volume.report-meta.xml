@@ -19,7 +19,7 @@
         <calculatedFormula>RowCount</calculatedFormula>
         <datatype>number</datatype>
         <description>Total submissions per month</description>
-        <developerName>Submission_Count</developerName>
+        <developerName>FORMULA_Submission_Count</developerName>
         <isActive>true</isActive>
         <isCrossBlock>false</isCrossBlock>
         <masterLabel>Submission Count</masterLabel>

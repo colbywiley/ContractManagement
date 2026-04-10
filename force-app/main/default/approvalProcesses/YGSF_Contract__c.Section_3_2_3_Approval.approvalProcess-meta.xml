@@ -22,6 +22,7 @@
                 <name>Branch_ED__c</name>
                 <type>relatedUserField</type>
             </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <label>Branch ED Approval</label>
         <name>Branch_ED_Approval</name>
@@ -33,6 +34,7 @@
                 <name>VP_Approver__c</name>
                 <type>relatedUserField</type>
             </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <label>VP Approval</label>
         <name>VP_Approval</name>

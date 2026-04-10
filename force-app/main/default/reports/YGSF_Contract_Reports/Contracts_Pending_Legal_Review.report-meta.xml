@@ -7,7 +7,7 @@
         <field>YGSF_Contract__c.Contract_Title__c</field>
     </columns>
     <columns>
-        <field>YGSF_Contract__c.Contract_Subject__c</field>
+        <field>YGSF_Contract__c.Contract_Subject_Picklist__c</field>
     </columns>
     <columns>
         <field>YGSF_Contract__c.Submission_Date__c</field>

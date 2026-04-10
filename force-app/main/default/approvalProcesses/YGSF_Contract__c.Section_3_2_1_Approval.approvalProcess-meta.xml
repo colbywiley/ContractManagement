@@ -21,6 +21,7 @@
                 <name>Legal_Reviewer__c</name>
                 <type>relatedUserField</type>
             </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <label>Legal Review</label>
         <name>Legal_Review</name>
@@ -32,6 +33,7 @@
                 <name>SVP_Approver__c</name>
                 <type>relatedUserField</type>
             </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <label>SVP Approval</label>
         <name>SVP_Approval</name>
@@ -46,6 +48,7 @@
                 <name>Officer_Approver__c</name>
                 <type>relatedUserField</type>
             </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <label>Officer Approval</label>
         <name>Officer_Approval</name>

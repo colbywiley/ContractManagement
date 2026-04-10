@@ -34,7 +34,6 @@
         <name>contractTypeChoices</name>
         <dataType>Picklist</dataType>
         <displayField>Contract_Type__c</displayField>
-        <object>YGSF_Contract__c</object>
         <picklistField>Contract_Type__c</picklistField>
         <picklistObject>YGSF_Contract__c</picklistObject>
     </dynamicChoiceSets>
@@ -43,7 +42,6 @@
         <name>contractSubjectChoices</name>
         <dataType>Picklist</dataType>
         <displayField>Contract_Subject_Picklist__c</displayField>
-        <object>YGSF_Contract__c</object>
         <picklistField>Contract_Subject_Picklist__c</picklistField>
         <picklistObject>YGSF_Contract__c</picklistObject>
     </dynamicChoiceSets>
@@ -52,7 +50,6 @@
         <name>paymentMethodChoices</name>
         <dataType>Picklist</dataType>
         <displayField>Payment_Method__c</displayField>
-        <object>YGSF_Contract__c</object>
         <picklistField>Payment_Method__c</picklistField>
         <picklistObject>YGSF_Contract__c</picklistObject>
     </dynamicChoiceSets>

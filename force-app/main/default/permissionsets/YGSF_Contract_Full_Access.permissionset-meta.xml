@@ -283,11 +283,6 @@
     <!-- Contract_Document__c field permissions (excluding Master-Detail Contract__c) -->
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contract_Document__c.Document_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Contract_Document__c.File_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
