@@ -3,7 +3,7 @@
     <label>YGSF Contract Full Access</label>
     <description>Full access to all YGSF Contract Management objects and fields. For system administrators.</description>
     <hasActivationRequired>false</hasActivationRequired>
-    <license>Salesforce</license>
+    <license>Salesforce Platform</license>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>

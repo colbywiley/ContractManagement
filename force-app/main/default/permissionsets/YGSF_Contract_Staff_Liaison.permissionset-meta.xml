@@ -3,7 +3,7 @@
     <label>YGSF Contract Staff Liaison</label>
     <description>For staff who submit and manage their own contracts.</description>
     <hasActivationRequired>false</hasActivationRequired>
-    <license>Salesforce</license>
+    <license>Salesforce Platform</license>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>

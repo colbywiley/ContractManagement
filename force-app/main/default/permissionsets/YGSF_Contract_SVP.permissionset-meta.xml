@@ -3,7 +3,7 @@
     <label>YGSF Contract SVP</label>
     <description>For Senior Vice Presidents who approve contracts.</description>
     <hasActivationRequired>false</hasActivationRequired>
-    <license>Salesforce</license>
+    <license>Salesforce Platform</license>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>

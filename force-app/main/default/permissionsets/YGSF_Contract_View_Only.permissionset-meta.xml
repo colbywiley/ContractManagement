@@ -3,7 +3,7 @@
     <label>YGSF Contract View Only</label>
     <description>Read-only access to all YGSF Contract Management data.</description>
     <hasActivationRequired>false</hasActivationRequired>
-    <license>Salesforce</license>
+    <license>Salesforce Platform</license>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>

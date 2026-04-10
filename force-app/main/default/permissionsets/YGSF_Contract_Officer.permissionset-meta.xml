@@ -3,7 +3,7 @@
     <label>YGSF Contract Officer</label>
     <description>For Association Officers (CEO, CPO, CFO, COO) who approve and sign contracts.</description>
     <hasActivationRequired>false</hasActivationRequired>
-    <license>Salesforce</license>
+    <license>Salesforce Platform</license>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
