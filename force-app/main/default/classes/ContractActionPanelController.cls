@@ -84,11 +84,9 @@ public with sharing class ContractActionPanelController {
 
     /**
      * @description Legal reviewer begins their review. Changes status to Legal Review In Progress.
-     * Unlocks the record first since it may be locked by the approval process.
      */
     @AuraEnabled
     public static void beginLegalReview(Id contractId) {
-        unlockRecord(contractId);
         update new YGSF_Contract__c(
             Id = contractId,
             Status__c = 'Legal Review In Progress'
@@ -101,7 +99,6 @@ public with sharing class ContractActionPanelController {
      */
     @AuraEnabled
     public static void completeLegalReview(Id contractId, String comments) {
-        unlockRecord(contractId);
         update new YGSF_Contract__c(
             Id = contractId,
             Status__c = 'Legal Review Complete'
@@ -116,10 +113,9 @@ public with sharing class ContractActionPanelController {
      */
     @AuraEnabled
     public static void requestRevisions(Id contractId, String comments) {
-        // Reject the current approval step first (this unlocks the record)
+        // Reject the current approval step
         rejectCurrentStep(contractId, String.isBlank(comments) ? 'Revisions requested by Legal' : comments);
 
-        unlockRecord(contractId);
         update new YGSF_Contract__c(
             Id = contractId,
             Status__c = 'Rejected',
@@ -143,7 +139,6 @@ public with sharing class ContractActionPanelController {
     public static void rejectContract(Id contractId, String comments) {
         rejectCurrentStep(contractId, String.isBlank(comments) ? 'Rejected' : comments);
 
-        unlockRecord(contractId);
         update new YGSF_Contract__c(
             Id = contractId,
             Status__c = 'Rejected',
@@ -157,7 +152,6 @@ public with sharing class ContractActionPanelController {
      */
     @AuraEnabled
     public static void markFullyExecuted(Id contractId) {
-        unlockRecord(contractId);
         update new YGSF_Contract__c(
             Id = contractId,
             Status__c = 'Fully Executed'
@@ -169,7 +163,6 @@ public with sharing class ContractActionPanelController {
      */
     @AuraEnabled
     public static void activateContract(Id contractId) {
-        unlockRecord(contractId);
         update new YGSF_Contract__c(
             Id = contractId,
             Status__c = 'Active'
@@ -196,17 +189,6 @@ public with sharing class ContractActionPanelController {
     }
 
     // ==================== Private Helpers ====================
-
-    /**
-     * @description Unlocks a record that may be locked by an approval process.
-     * Required because approval process locks prevent DML updates even by the
-     * current approver. Fails silently if the record is not locked.
-     */
-    private static void unlockRecord(Id recordId) {
-        if (Approval.isLocked(recordId)) {
-            Approval.unlock(recordId);
-        }
-    }
 
     private static Boolean hasPermissionSet(String permSetName) {
         return [
