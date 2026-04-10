@@ -6,20 +6,5 @@
     <name>Legal Review Complete</name>
     <style>none</style>
     <subject>Legal Review Complete: {!YGSF_Contract__c.Name}</subject>
-    <textOnly>Dear {!YGSF_Contract__c.Staff_Liaison__c},
-
-The legal review for the following contract has been completed.
-
-Contract Details:
-- Contract Number: {!YGSF_Contract__c.Name}
-- Contract Title: {!YGSF_Contract__c.Contract_Title__c}
-- Contract Type: {!YGSF_Contract__c.Contract_Type__c}
-- Legal Reviewer: {!YGSF_Contract__c.Legal_Reviewer__c}
-- Status: {!YGSF_Contract__c.Status__c}
-
-The contract will now proceed to the next step in the approval process. You will be notified of any further actions required.
-
-Thank you,
-YGSF Contract Management</textOnly>
     <type>text</type>
 </EmailTemplate>

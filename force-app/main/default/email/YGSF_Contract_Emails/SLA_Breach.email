@@ -1,0 +1,17 @@
+URGENT: The SLA has been breached for the following contract.
+
+Contract Details:
+- Contract Number: {!YGSF_Contract__c.Name}
+- Contract Title: {!YGSF_Contract__c.Contract_Title__c}
+- Contract Type: {!YGSF_Contract__c.Contract_Type__c}
+- Status: {!YGSF_Contract__c.Status__c}
+- Days In Review: {!YGSF_Contract__c.Days_In_Review__c}
+- SLA Status: {!YGSF_Contract__c.SLA_Status__c}
+- Legal Reviewer: {!YGSF_Contract__c.Legal_Reviewer__c}
+- Staff Liaison: {!YGSF_Contract__c.Staff_Liaison__c}
+- Submission Date: {!YGSF_Contract__c.Submission_Date__c}
+
+This contract has exceeded the allowed review period. Immediate action is required to resolve this SLA breach and advance the contract.
+
+Thank you,
+YGSF Contract Management

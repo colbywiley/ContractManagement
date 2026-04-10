@@ -1,0 +1,15 @@
+Dear {!YGSF_Contract__c.Staff_Liaison__c},
+
+The Certificate of Insurance (COI) associated with the following contract is expiring soon.
+
+Contract Details:
+- Contract Number: {!YGSF_Contract__c.Name}
+- Contract Title: {!YGSF_Contract__c.Contract_Title__c}
+- Contract Type: {!YGSF_Contract__c.Contract_Type__c}
+- Contract Value: {!YGSF_Contract__c.Contract_Value__c}
+- Location: {!YGSF_Contract__c.Location__c}
+
+Please ensure that an updated Certificate of Insurance is obtained and uploaded to the contract record before the current COI expires. Failure to maintain valid insurance documentation may affect contract compliance.
+
+Thank you,
+YGSF Contract Management

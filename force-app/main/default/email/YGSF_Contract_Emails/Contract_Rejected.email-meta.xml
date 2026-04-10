@@ -6,22 +6,5 @@
     <name>Contract Rejected</name>
     <style>none</style>
     <subject>Contract Rejected: {!YGSF_Contract__c.Name}</subject>
-    <textOnly>Dear {!YGSF_Contract__c.Staff_Liaison__c},
-
-The following contract has been rejected.
-
-Contract Details:
-- Contract Number: {!YGSF_Contract__c.Name}
-- Contract Title: {!YGSF_Contract__c.Contract_Title__c}
-- Contract Type: {!YGSF_Contract__c.Contract_Type__c}
-- Contract Value: {!YGSF_Contract__c.Contract_Value__c}
-- Approval Path: {!YGSF_Contract__c.Approval_Path__c}
-
-Rejection Reason: {!YGSF_Contract__c.Rejection_Reason__c}
-
-Please review the rejection reason and make any necessary revisions before resubmitting the contract.
-
-Thank you,
-YGSF Contract Management</textOnly>
     <type>text</type>
 </EmailTemplate>

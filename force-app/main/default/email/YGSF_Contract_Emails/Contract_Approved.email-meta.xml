@@ -6,20 +6,5 @@
     <name>Contract Approved</name>
     <style>none</style>
     <subject>Contract Approved: {!YGSF_Contract__c.Name}</subject>
-    <textOnly>The following contract has been approved.
-
-Contract Details:
-- Contract Number: {!YGSF_Contract__c.Name}
-- Contract Title: {!YGSF_Contract__c.Contract_Title__c}
-- Contract Type: {!YGSF_Contract__c.Contract_Type__c}
-- Contract Value: {!YGSF_Contract__c.Contract_Value__c}
-- Approval Path: {!YGSF_Contract__c.Approval_Path__c}
-- Staff Liaison: {!YGSF_Contract__c.Staff_Liaison__c}
-- Location: {!YGSF_Contract__c.Location__c}
-
-The contract will now proceed to the signature phase. All designated signatories will be notified.
-
-Thank you,
-YGSF Contract Management</textOnly>
     <type>text</type>
 </EmailTemplate>

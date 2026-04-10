@@ -15,7 +15,7 @@
                 </componentInstanceProperties>
             </componentInstance>
         </itemInstances>
-        <name>main</name>
+        <name>column1</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -24,38 +24,16 @@
                 <componentName>runtime_sales_activities:todayTaskContainer</componentName>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>flexipage:reportChart</componentName>
-                <componentInstanceProperties>
-                    <name>reportName</name>
-                    <value>YGSF_Contract_Reports/Active_Contracts_by_Type</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Contracts by Type</value>
-                </componentInstanceProperties>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>flexipage:reportChart</componentName>
-                <componentInstanceProperties>
-                    <name>reportName</name>
-                    <value>YGSF_Contract_Reports/Expiring_Contracts_Next_90_Days</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Expiring Contracts</value>
-                </componentInstanceProperties>
-            </componentInstance>
-        </itemInstances>
-        <name>sidebar</name>
+        <name>column2</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>header</name>
         <type>Region</type>
     </flexiPageRegions>
     <masterLabel>YGSF Contract Management Home</masterLabel>
     <template>
-        <name>flexipage:defaultAppHomeTemplate</name>
+        <name>flexipage:appHomeTemplateHeaderTwoColumnsEqualWidth</name>
     </template>
     <type>AppPage</type>
 </FlexiPage>

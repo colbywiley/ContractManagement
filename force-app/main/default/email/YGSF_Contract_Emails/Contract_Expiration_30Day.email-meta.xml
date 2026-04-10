@@ -6,22 +6,5 @@
     <name>Contract Expiration 30 Day Warning</name>
     <style>none</style>
     <subject>Contract Expiring in 30 Days: {!YGSF_Contract__c.Name}</subject>
-    <textOnly>Dear {!YGSF_Contract__c.Staff_Liaison__c},
-
-IMPORTANT: The following contract will expire in approximately 30 days.
-
-Contract Details:
-- Contract Number: {!YGSF_Contract__c.Name}
-- Contract Title: {!YGSF_Contract__c.Contract_Title__c}
-- Contract Type: {!YGSF_Contract__c.Contract_Type__c}
-- Contract Value: {!YGSF_Contract__c.Contract_Value__c}
-- Start Date: {!YGSF_Contract__c.Start_Date__c}
-- End Date: {!YGSF_Contract__c.End_Date__c}
-- Location: {!YGSF_Contract__c.Location__c}
-
-If this contract needs to be renewed, please take immediate action to initiate the renewal process. Failure to renew before expiration may result in a lapse of services.
-
-Thank you,
-YGSF Contract Management</textOnly>
     <type>text</type>
 </EmailTemplate>

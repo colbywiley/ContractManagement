@@ -1,0 +1,17 @@
+Dear {!YGSF_Contract__c.Staff_Liaison__c},
+
+This is a reminder that the following contract will expire in approximately 90 days.
+
+Contract Details:
+- Contract Number: {!YGSF_Contract__c.Name}
+- Contract Title: {!YGSF_Contract__c.Contract_Title__c}
+- Contract Type: {!YGSF_Contract__c.Contract_Type__c}
+- Contract Value: {!YGSF_Contract__c.Contract_Value__c}
+- Start Date: {!YGSF_Contract__c.Start_Date__c}
+- End Date: {!YGSF_Contract__c.End_Date__c}
+- Location: {!YGSF_Contract__c.Location__c}
+
+If this contract needs to be renewed, please begin the renewal process soon to ensure continuity of services.
+
+Thank you,
+YGSF Contract Management

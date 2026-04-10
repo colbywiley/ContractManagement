@@ -1,0 +1,17 @@
+Dear {!YGSF_Contract__c.Staff_Liaison__c},
+
+Your contract has been submitted successfully and is now in the review queue.
+
+Contract Details:
+- Contract Number: {!YGSF_Contract__c.Name}
+- Contract Title: {!YGSF_Contract__c.Contract_Title__c}
+- Contract Type: {!YGSF_Contract__c.Contract_Type__c}
+- Contract Subject: {!YGSF_Contract__c.Contract_Subject__c}
+- Contract Value: {!YGSF_Contract__c.Contract_Value__c}
+- Submission Date: {!YGSF_Contract__c.Submission_Date__c}
+- Location: {!YGSF_Contract__c.Location__c}
+
+Your contract will be routed for legal review. You will receive notifications as the contract progresses through the approval process.
+
+Thank you,
+YGSF Contract Management
