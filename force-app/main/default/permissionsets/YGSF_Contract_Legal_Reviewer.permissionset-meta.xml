@@ -281,6 +281,11 @@
         <field>YGSF_Contract__c.Services_Started_Before_Execution__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>YGSF_Contract__c.SLA_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <!-- Contract_Document__c read-only fields -->
     <fieldPermissions>
         <editable>false</editable>

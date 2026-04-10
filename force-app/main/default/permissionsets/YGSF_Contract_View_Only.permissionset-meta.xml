@@ -280,6 +280,11 @@
         <field>YGSF_Contract__c.Rejection_Reason__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>YGSF_Contract__c.SLA_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <!-- Contract_Document__c read-only fields -->
     <fieldPermissions>
         <editable>false</editable>

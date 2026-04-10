@@ -182,12 +182,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>YGSF_Contract__c.Renewal_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>YGSF_Contract__c.Legal_Reviewer__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -197,22 +197,22 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>YGSF_Contract__c.Branch_ED__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>YGSF_Contract__c.VP_Approver__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>YGSF_Contract__c.SVP_Approver__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>YGSF_Contract__c.Officer_Approver__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -247,7 +247,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>YGSF_Contract__c.COI_Expiration_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -272,13 +272,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>YGSF_Contract__c.Gift_Acceptance_Review__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>YGSF_Contract__c.Rejection_Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>YGSF_Contract__c.SLA_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <!-- Contract_Document__c editable fields -->
