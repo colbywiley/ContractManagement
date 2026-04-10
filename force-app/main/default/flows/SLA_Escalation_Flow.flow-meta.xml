@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <description>Schedule-Triggered Flow that runs daily. Queries contracts where Status is "Legal Review In Progress" and the Submission_Date__c is more than 5 business days ago (using calendar days as approximation). Sends escalation emails to notify stakeholders that the legal review SLA has been breached.</description>
+    <interviewLabel>SLA Escalation {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>SLA Escalation</label>
+    <processType>AutoLaunchedFlow</processType>
+    <status>Active</status>
+
+    <!-- Formula: 5 days ago from today -->
+    <formulas>
+        <name>frmSLACutoffDate</name>
+        <dataType>Date</dataType>
+        <expression>{!$Flow.CurrentDate} - 5</expression>
+    </formulas>
+
+    <!-- Start: Schedule-Triggered, runs daily -->
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Overdue_Contracts</targetReference>
+        </connector>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2026-01-01</startDate>
+            <startTime>08:00:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+
+    <!-- Get Contracts with Overdue Legal Review -->
+    <recordLookups>
+        <name>Get_Overdue_Contracts</name>
+        <label>Get Overdue Legal Review Contracts</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <connector>
+            <targetReference>Decision_Has_Overdue_Contracts</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Legal Review In Progress</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Submission_Date__c</field>
+            <operator>LessThanOrEqualTo</operator>
+            <value>
+                <elementReference>frmSLACutoffDate</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Submission_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>YGSF_Contract__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+
+    <!-- Decision: Any overdue contracts? -->
+    <decisions>
+        <name>Decision_Has_Overdue_Contracts</name>
+        <label>Has Overdue Contracts?</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <defaultConnectorLabel>No Overdue Contracts</defaultConnectorLabel>
+        <rules>
+            <name>Has_Overdue_Contracts</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Overdue_Contracts</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Overdue_Contracts</targetReference>
+            </connector>
+            <label>Has Overdue Contracts</label>
+        </rules>
+    </decisions>
+
+    <!-- Loop Overdue Contracts -->
+    <loops>
+        <name>Loop_Overdue_Contracts</name>
+        <label>Loop Through Overdue Contracts</label>
+        <locationX>176</locationX>
+        <locationY>398</locationY>
+        <collectionReference>Get_Overdue_Contracts</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Send_Escalation_To_Liaison</targetReference>
+        </nextValueConnector>
+    </loops>
+
+    <!-- Send Escalation Email to Staff Liaison -->
+    <actionCalls>
+        <name>Send_Escalation_To_Liaison</name>
+        <label>Send Escalation to Staff Liaison</label>
+        <locationX>352</locationX>
+        <locationY>518</locationY>
+        <connector>
+            <targetReference>Send_Escalation_To_Legal_Reviewer</targetReference>
+        </connector>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddressesArray</name>
+            <value>
+                <elementReference>Loop_Overdue_Contracts.Staff_Liaison__r.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>SLA ESCALATION: Legal Review Overdue - {!Loop_Overdue_Contracts.Contract_Title__c}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>ESCALATION NOTICE: The legal review for the following contract has exceeded the 5-day SLA:
+
+Contract Title: {!Loop_Overdue_Contracts.Contract_Title__c}
+Contract Type: {!Loop_Overdue_Contracts.Contract_Type__c}
+Contract Subject: {!Loop_Overdue_Contracts.Contract_Subject_Picklist__c}
+Contract Value: {!Loop_Overdue_Contracts.Contract_Value__c}
+Submission Date: {!Loop_Overdue_Contracts.Submission_Date__c}
+Days in Review: {!Loop_Overdue_Contracts.Days_In_Review__c}
+
+The legal review SLA of 5 days has been breached. Please follow up with the Legal Department to expedite the review.</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+
+    <!-- Send Escalation Email to Legal Reviewer -->
+    <actionCalls>
+        <name>Send_Escalation_To_Legal_Reviewer</name>
+        <label>Send Escalation to Legal Reviewer</label>
+        <locationX>352</locationX>
+        <locationY>638</locationY>
+        <connector>
+            <targetReference>Update_SLA_Status</targetReference>
+        </connector>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddressesArray</name>
+            <value>
+                <elementReference>Loop_Overdue_Contracts.Legal_Reviewer__r.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>SLA ESCALATION: Your Legal Review is Overdue - {!Loop_Overdue_Contracts.Contract_Title__c}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>ESCALATION NOTICE: The following contract assigned to you for legal review has exceeded the 5-day SLA:
+
+Contract Title: {!Loop_Overdue_Contracts.Contract_Title__c}
+Contract Type: {!Loop_Overdue_Contracts.Contract_Type__c}
+Contract Subject: {!Loop_Overdue_Contracts.Contract_Subject_Picklist__c}
+Contract Value: {!Loop_Overdue_Contracts.Contract_Value__c}
+Submission Date: {!Loop_Overdue_Contracts.Submission_Date__c}
+Days in Review: {!Loop_Overdue_Contracts.Days_In_Review__c}
+
+Please prioritize completing this legal review or contact the Staff Liaison if additional time is needed.</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+
+    <!-- Update SLA Status on the Contract -->
+    <recordUpdates>
+        <name>Update_SLA_Status</name>
+        <label>Update SLA Status to Breached</label>
+        <locationX>352</locationX>
+        <locationY>758</locationY>
+        <connector>
+            <targetReference>Loop_Overdue_Contracts</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Loop_Overdue_Contracts.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>SLA_Status__c</field>
+            <value>
+                <stringValue>Breached</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Is_Overdue__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>YGSF_Contract__c</object>
+    </recordUpdates>
+</Flow>

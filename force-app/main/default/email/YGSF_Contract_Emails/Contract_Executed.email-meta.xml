@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Confirmation sent when a contract is fully executed with all signatures</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Contract Executed</name>
+    <style>none</style>
+    <subject>Contract Fully Executed: {!YGSF_Contract__c.Name}</subject>
+    <textOnly>The following contract has been fully executed.
+
+Contract Details:
+- Contract Number: {!YGSF_Contract__c.Name}
+- Contract Title: {!YGSF_Contract__c.Contract_Title__c}
+- Contract Type: {!YGSF_Contract__c.Contract_Type__c}
+- Contract Value: {!YGSF_Contract__c.Contract_Value__c}
+- Start Date: {!YGSF_Contract__c.Start_Date__c}
+- End Date: {!YGSF_Contract__c.End_Date__c}
+- Staff Liaison: {!YGSF_Contract__c.Staff_Liaison__c}
+- Location: {!YGSF_Contract__c.Location__c}
+
+All required signatures have been obtained and the contract is now active. A copy of the fully executed contract will be stored in the contract documents.
+
+Thank you,
+YGSF Contract Management</textOnly>
+    <type>text</type>
+</EmailTemplate>

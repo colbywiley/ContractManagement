@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Warning notification when SLA deadline is approaching for a contract</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>SLA Warning</name>
+    <style>none</style>
+    <subject>SLA Warning: {!YGSF_Contract__c.Name}</subject>
+    <textOnly>ATTENTION: The SLA deadline is approaching for the following contract.
+
+Contract Details:
+- Contract Number: {!YGSF_Contract__c.Name}
+- Contract Title: {!YGSF_Contract__c.Contract_Title__c}
+- Contract Type: {!YGSF_Contract__c.Contract_Type__c}
+- Status: {!YGSF_Contract__c.Status__c}
+- Days In Review: {!YGSF_Contract__c.Days_In_Review__c}
+- SLA Status: {!YGSF_Contract__c.SLA_Status__c}
+- Legal Reviewer: {!YGSF_Contract__c.Legal_Reviewer__c}
+- Staff Liaison: {!YGSF_Contract__c.Staff_Liaison__c}
+
+Please take immediate action to advance this contract through the review process to avoid an SLA breach.
+
+Thank you,
+YGSF Contract Management</textOnly>
+    <type>text</type>
+</EmailTemplate>
