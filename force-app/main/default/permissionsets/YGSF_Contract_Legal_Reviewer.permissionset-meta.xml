@@ -3,7 +3,6 @@
     <label>YGSF Contract Legal Reviewer</label>
     <description>For Legal Department staff reviewing contracts.</description>
     <hasActivationRequired>false</hasActivationRequired>
-    <license>Salesforce Platform</license>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>

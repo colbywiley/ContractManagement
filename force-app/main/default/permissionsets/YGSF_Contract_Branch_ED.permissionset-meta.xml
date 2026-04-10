@@ -3,7 +3,6 @@
     <label>YGSF Contract Branch ED</label>
     <description>For Branch Executive Directors who manage and approve branch contracts.</description>
     <hasActivationRequired>false</hasActivationRequired>
-    <license>Salesforce Platform</license>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
