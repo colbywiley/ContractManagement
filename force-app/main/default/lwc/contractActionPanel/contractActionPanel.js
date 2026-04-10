@@ -183,8 +183,9 @@ export default class ContractActionPanel extends LightningElement {
       // Force record page refresh
       eval("$A.get('e.force:refreshView').fire()");
     } catch (error) {
+      console.error("ContractActionPanel error:", JSON.stringify(error));
       const errorMsg = this.extractErrorMessage(error);
-      this.showToast("Error", errorMsg, "error");
+      this.showToast("Error", errorMsg || "Check browser console for details (F12 > Console)", "error");
     } finally {
       this.isProcessing = false;
       this.pendingAction = "";
