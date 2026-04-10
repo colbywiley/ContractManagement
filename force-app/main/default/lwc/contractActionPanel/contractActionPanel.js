@@ -192,6 +192,34 @@ export default class ContractActionPanel extends LightningElement {
     }
   }
 
+  extractErrorMessage(error) {
+    if (!error) return "An unknown error occurred.";
+    // Apex @AuraEnabled errors
+    if (error.body) {
+      if (error.body.message) return error.body.message;
+      if (error.body.output && error.body.output.errors) {
+        return error.body.output.errors.map((e) => e.message).join("; ");
+      }
+      if (error.body.fieldErrors) {
+        const msgs = [];
+        for (const field in error.body.fieldErrors) {
+          error.body.fieldErrors[field].forEach((e) => msgs.push(e.message));
+        }
+        return msgs.join("; ");
+      }
+      if (error.body.pageErrors) {
+        return error.body.pageErrors.map((e) => e.message).join("; ");
+      }
+    }
+    // Standard JS error
+    if (error.message) return error.message;
+    // Array of errors
+    if (Array.isArray(error)) {
+      return error.map((e) => e.message || JSON.stringify(e)).join("; ");
+    }
+    return JSON.stringify(error);
+  }
+
   showToast(title, message, variant) {
     this.dispatchEvent(
       new ShowToastEvent({ title, message, variant })
