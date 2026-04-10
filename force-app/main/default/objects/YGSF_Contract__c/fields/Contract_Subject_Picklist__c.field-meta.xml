@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Subject_Picklist__c</fullName>
+    <externalId>false</externalId>
+    <label>Contract Subject</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Alcohol Service</fullName>
+                <default>false</default>
+                <label>Alcohol Service</label>
+            </value>
+            <value>
+                <fullName>Auctioneers</fullName>
+                <default>false</default>
+                <label>Auctioneers</label>
+            </value>
+            <value>
+                <fullName>Bounce House Stage Tent</fullName>
+                <default>false</default>
+                <label>Bounce House Stage Tent</label>
+            </value>
+            <value>
+                <fullName>Bus Transportation Service</fullName>
+                <default>false</default>
+                <label>Bus Transportation Service</label>
+            </value>
+            <value>
+                <fullName>Business Associate Agreement</fullName>
+                <default>false</default>
+                <label>Business Associate Agreement</label>
+            </value>
+            <value>
+                <fullName>Consultant Agreement</fullName>
+                <default>false</default>
+                <label>Consultant Agreement</label>
+            </value>
+            <value>
+                <fullName>Construction</fullName>
+                <default>false</default>
+                <label>Construction</label>
+            </value>
+            <value>
+                <fullName>Equipment or Furniture Rental</fullName>
+                <default>false</default>
+                <label>Equipment or Furniture Rental</label>
+            </value>
+            <value>
+                <fullName>Event Production</fullName>
+                <default>false</default>
+                <label>Event Production</label>
+            </value>
+            <value>
+                <fullName>Exchange of Employee Member Data</fullName>
+                <default>false</default>
+                <label>Exchange of Employee Member Data</label>
+            </value>
+            <value>
+                <fullName>Facility Use Agreement</fullName>
+                <default>false</default>
+                <label>Facility Use Agreement</label>
+            </value>
+            <value>
+                <fullName>Fiduciary Management Services</fullName>
+                <default>false</default>
+                <label>Fiduciary Management Services</label>
+            </value>
+            <value>
+                <fullName>Fiscal Sponsorship Agreement</fullName>
+                <default>false</default>
+                <label>Fiscal Sponsorship Agreement</label>
+            </value>
+            <value>
+                <fullName>Food Service Catering</fullName>
+                <default>false</default>
+                <label>Food Service Catering</label>
+            </value>
+            <value>
+                <fullName>Grant Agreement</fullName>
+                <default>false</default>
+                <label>Grant Agreement</label>
+            </value>
+            <value>
+                <fullName>Grant Funded Contractor or Services</fullName>
+                <default>false</default>
+                <label>Grant Funded Contractor or Services</label>
+            </value>
+            <value>
+                <fullName>Health Screening Medical Service</fullName>
+                <default>false</default>
+                <label>Health Screening Medical Service</label>
+            </value>
+            <value>
+                <fullName>Hotel Conference Venue Rental</fullName>
+                <default>false</default>
+                <label>Hotel Conference Venue Rental</label>
+            </value>
+            <value>
+                <fullName>Independent Contractor Professional</fullName>
+                <default>false</default>
+                <label>Independent Contractor Professional</label>
+            </value>
+            <value>
+                <fullName>Independent Contractor Youth</fullName>
+                <default>false</default>
+                <label>Independent Contractor Youth</label>
+            </value>
+            <value>
+                <fullName>Internship Affiliation or Placement</fullName>
+                <default>false</default>
+                <label>Internship Affiliation or Placement</label>
+            </value>
+            <value>
+                <fullName>Legal Services</fullName>
+                <default>false</default>
+                <label>Legal Services</label>
+            </value>
+            <value>
+                <fullName>Maintenance Agreement</fullName>
+                <default>false</default>
+                <label>Maintenance Agreement</label>
+            </value>
+            <value>
+                <fullName>Musicians DJs Entertainers Emcees</fullName>
+                <default>false</default>
+                <label>Musicians DJs Entertainers Emcees</label>
+            </value>
+            <value>
+                <fullName>NDA</fullName>
+                <default>false</default>
+                <label>NDA</label>
+            </value>
+            <value>
+                <fullName>PII or HIPAA Related Contract</fullName>
+                <default>false</default>
+                <label>PII or HIPAA Related Contract</label>
+            </value>
+            <value>
+                <fullName>Professional Services</fullName>
+                <default>false</default>
+                <label>Professional Services</label>
+            </value>
+            <value>
+                <fullName>Property Lease License or Rental</fullName>
+                <default>false</default>
+                <label>Property Lease License or Rental</label>
+            </value>
+            <value>
+                <fullName>PTA Agreement for Enrichment</fullName>
+                <default>false</default>
+                <label>PTA Agreement for Enrichment</label>
+            </value>
+            <value>
+                <fullName>School District Service Agreement or MOU</fullName>
+                <default>false</default>
+                <label>School District Service Agreement or MOU</label>
+            </value>
+            <value>
+                <fullName>Security Service</fullName>
+                <default>false</default>
+                <label>Security Service</label>
+            </value>
+            <value>
+                <fullName>Software as a Service Agreement</fullName>
+                <default>false</default>
+                <label>Software as a Service Agreement</label>
+            </value>
+            <value>
+                <fullName>Staff Training</fullName>
+                <default>false</default>
+                <label>Staff Training</label>
+            </value>
+            <value>
+                <fullName>Staffing Service</fullName>
+                <default>false</default>
+                <label>Staffing Service</label>
+            </value>
+            <value>
+                <fullName>Unique Novel Program or Services</fullName>
+                <default>false</default>
+                <label>Unique Novel Program or Services</label>
+            </value>
+            <value>
+                <fullName>User Group Agreement</fullName>
+                <default>false</default>
+                <label>User Group Agreement</label>
+            </value>
+            <value>
+                <fullName>Workforce Development</fullName>
+                <default>false</default>
+                <label>Workforce Development</label>
+            </value>
+            <value>
+                <fullName>Youth Program Services</fullName>
+                <default>false</default>
+                <label>Youth Program Services</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

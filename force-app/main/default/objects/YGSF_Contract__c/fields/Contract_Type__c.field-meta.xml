@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Contract Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Grant</fullName>
+                <default>false</default>
+                <label>Grant</label>
+            </value>
+            <value>
+                <fullName>Service Agreement</fullName>
+                <default>false</default>
+                <label>Service Agreement</label>
+            </value>
+            <value>
+                <fullName>Memorandum of Understanding</fullName>
+                <default>false</default>
+                <label>Memorandum of Understanding</label>
+            </value>
+            <value>
+                <fullName>Independent Contractor Agreement</fullName>
+                <default>false</default>
+                <label>Independent Contractor Agreement</label>
+            </value>
+            <value>
+                <fullName>ICA Addendum</fullName>
+                <default>false</default>
+                <label>ICA Addendum</label>
+            </value>
+            <value>
+                <fullName>Facility Lease</fullName>
+                <default>false</default>
+                <label>Facility Lease</label>
+            </value>
+            <value>
+                <fullName>Equipment Lease</fullName>
+                <default>false</default>
+                <label>Equipment Lease</label>
+            </value>
+            <value>
+                <fullName>Facility License</fullName>
+                <default>false</default>
+                <label>Facility License</label>
+            </value>
+            <value>
+                <fullName>Maintenance Agreement</fullName>
+                <default>false</default>
+                <label>Maintenance Agreement</label>
+            </value>
+            <value>
+                <fullName>Construction Contract</fullName>
+                <default>false</default>
+                <label>Construction Contract</label>
+            </value>
+            <value>
+                <fullName>Engagement Letter</fullName>
+                <default>false</default>
+                <label>Engagement Letter</label>
+            </value>
+            <value>
+                <fullName>Facility Use Agreement</fullName>
+                <default>false</default>
+                <label>Facility Use Agreement</label>
+            </value>
+            <value>
+                <fullName>User Group Agreement</fullName>
+                <default>false</default>
+                <label>User Group Agreement</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approval_Path__c</fullName>
+    <externalId>false</externalId>
+    <label>Approval Path</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Section 3.2.1 - SVP and Officer</fullName>
+                <default>false</default>
+                <label>Section 3.2.1 - SVP and Officer</label>
+            </value>
+            <value>
+                <fullName>Section 3.2.2 - SVP and VP</fullName>
+                <default>false</default>
+                <label>Section 3.2.2 - SVP and VP</label>
+            </value>
+            <value>
+                <fullName>Section 3.2.3 - ED and VP</fullName>
+                <default>false</default>
+                <label>Section 3.2.3 - ED and VP</label>
+            </value>
+            <value>
+                <fullName>Section 3.2.4 - Branch ED Only</fullName>
+                <default>false</default>
+                <label>Section 3.2.4 - Branch ED Only</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

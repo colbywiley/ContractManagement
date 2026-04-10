@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Document_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Document Type</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Original Contract</fullName>
+                <default>false</default>
+                <label>Original Contract</label>
+            </value>
+            <value>
+                <fullName>Amendment</fullName>
+                <default>false</default>
+                <label>Amendment</label>
+            </value>
+            <value>
+                <fullName>COI</fullName>
+                <default>false</default>
+                <label>COI</label>
+            </value>
+            <value>
+                <fullName>Additional Insured Endorsement</fullName>
+                <default>false</default>
+                <label>Additional Insured Endorsement</label>
+            </value>
+            <value>
+                <fullName>ICA Approval Form</fullName>
+                <default>false</default>
+                <label>ICA Approval Form</label>
+            </value>
+            <value>
+                <fullName>Executed Copy</fullName>
+                <default>false</default>
+                <label>Executed Copy</label>
+            </value>
+            <value>
+                <fullName>Counterparty Template</fullName>
+                <default>false</default>
+                <label>Counterparty Template</label>
+            </value>
+            <value>
+                <fullName>YGSF Template</fullName>
+                <default>false</default>
+                <label>YGSF Template</label>
+            </value>
+            <value>
+                <fullName>Supporting Document</fullName>
+                <default>false</default>
+                <label>Supporting Document</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
