@@ -135,6 +135,36 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>Legal_Reviewer__c</field>
+            <value>
+                <elementReference>varLegalReviewerId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Branch_ED__c</field>
+            <value>
+                <elementReference>varBranchEDId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>VP_Approver__c</field>
+            <value>
+                <elementReference>varVPApproverId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>SVP_Approver__c</field>
+            <value>
+                <elementReference>varSVPApproverId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Officer_Approver__c</field>
+            <value>
+                <elementReference>varOfficerApproverId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Status__c</field>
             <value>
                 <stringValue>Draft</stringValue>
@@ -333,7 +363,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Review_Submit</targetReference>
+            <targetReference>Approvers_Screen</targetReference>
         </connector>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -396,7 +426,168 @@
         </fields>
     </screens>
 
-    <!-- Screen 4: Review and Submit -->
+    <!-- Screen 4: Approvers -->
+    <screens>
+        <name>Approvers_Screen</name>
+        <label>Approvers</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Review_Submit</targetReference>
+        </connector>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+        <fields>
+            <name>Section_Approvers_Header</name>
+            <fieldType>DisplayText</fieldType>
+            <fieldText>&lt;p&gt;&lt;b&gt;Assign the approvers for this contract.&lt;/b&gt; The system will determine which approvers are required based on the contract subject and value, but please populate all relevant approvers.&lt;/p&gt;</fieldText>
+        </fields>
+        <fields>
+            <name>Legal_Reviewer</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>Legal_Reviewer__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>YGSF_Contract__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Legal Reviewer</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <outputParameters>
+                <assignToReference>varLegalReviewerId</assignToReference>
+                <name>recordId</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>Branch_Executive_Director</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>Branch_ED__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>YGSF_Contract__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Branch Executive Director</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <outputParameters>
+                <assignToReference>varBranchEDId</assignToReference>
+                <name>recordId</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>VP_Approver</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>VP_Approver__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>YGSF_Contract__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>VP Approver</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <outputParameters>
+                <assignToReference>varVPApproverId</assignToReference>
+                <name>recordId</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>SVP_Approver</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>SVP_Approver__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>YGSF_Contract__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>SVP Approver</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <outputParameters>
+                <assignToReference>varSVPApproverId</assignToReference>
+                <name>recordId</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <name>Officer_Approver</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>Officer_Approver__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>YGSF_Contract__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Officer Approver (CEO/CPO/CFO/COO)</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <outputParameters>
+                <assignToReference>varOfficerApproverId</assignToReference>
+                <name>recordId</name>
+            </outputParameters>
+        </fields>
+    </screens>
+
+    <!-- Screen 5: Review and Submit -->
     <screens>
         <name>Review_Submit</name>
         <label>Review and Submit</label>
@@ -450,6 +641,41 @@
     </variables>
     <variables>
         <name>varCounterpartyContactId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varLegalReviewerId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varBranchEDId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varVPApproverId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varSVPApproverId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varOfficerApproverId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
