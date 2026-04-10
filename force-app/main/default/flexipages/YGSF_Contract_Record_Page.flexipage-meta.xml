@@ -52,6 +52,7 @@
         <itemInstances>
             <componentInstance>
                 <componentName>force:relatedListContainer</componentName>
+                <identifier>force_relatedListContainer</identifier>
             </componentInstance>
         </itemInstances>
         <name>sidebar</name>
