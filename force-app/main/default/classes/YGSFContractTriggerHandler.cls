@@ -94,7 +94,7 @@ public with sharing class YGSFContractTriggerHandler {
                 // Create approval history record
                 historyRecords.add(new Contract_Approval_History__c(
                     Contract__c = newContract.Id,
-                    Action__c = 'Status Change: ' + oldContract.Status__c + ' -> ' + newContract.Status__c,
+                    Action__c = mapStatusToAction(newContract.Status__c),
                     Actor__c = UserInfo.getUserId(),
                     Action_Date__c = Datetime.now(),
                     Step_Name__c = newContract.Status__c,
@@ -190,5 +190,25 @@ public with sharing class YGSFContractTriggerHandler {
             ContractNotificationService.notifyApprovalRequired(contract, approverId);
             notified.add(approverId);
         }
+    }
+
+    /**
+     * @description Maps a contract status to a valid Action__c picklist value.
+     * The Action__c field on Contract_Approval_History__c is a restricted picklist
+     * with values: Submitted, Approved, Rejected, Recalled, Reassigned, Acknowledged, Reviewed.
+     * @param status The contract Status__c value
+     * @return A valid Action__c picklist value
+     */
+    private String mapStatusToAction(String status) {
+        if (status == 'Submitted') return 'Submitted';
+        if (status == 'Legal Review In Progress') return 'Acknowledged';
+        if (status == 'Legal Review Complete') return 'Reviewed';
+        if (status == 'Pending Signatures') return 'Approved';
+        if (status == 'Fully Executed') return 'Approved';
+        if (status == 'Active') return 'Approved';
+        if (status == 'Rejected') return 'Rejected';
+        if (status == 'Recalled' || status == 'Cancelled') return 'Recalled';
+        if (status == 'Renewed') return 'Approved';
+        return 'Acknowledged';
     }
 }
