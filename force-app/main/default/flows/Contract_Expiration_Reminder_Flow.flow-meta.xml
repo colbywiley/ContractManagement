@@ -24,52 +24,125 @@
         <expression>{!$Flow.CurrentDate} + 90</expression>
     </formulas>
 
-    <!-- Start: Schedule-Triggered, runs daily -->
-    <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
+    <!-- Send 30-Day Reminder -->
+    <actionCalls>
+        <name>Send_30_Day_Reminder</name>
+        <label>Send 30-Day Expiration Reminder</label>
+        <locationX>352</locationX>
+        <locationY>518</locationY>
         <connector>
-            <targetReference>Get_Expiring_Contracts_30</targetReference>
+            <targetReference>Loop_30_Day_Contracts</targetReference>
         </connector>
-        <schedule>
-            <frequency>Daily</frequency>
-            <startDate>2026-01-01</startDate>
-            <startTime>07:00:00.000Z</startTime>
-        </schedule>
-        <triggerType>Scheduled</triggerType>
-    </start>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Loop_30_Day_Contracts.Staff_Liaison__r.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>URGENT: Contract Expiring in 30 Days - {!Loop_30_Day_Contracts.Contract_Title__c}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>This is an urgent reminder that the following contract will expire in 30 days:
 
-    <!-- Get Contracts Expiring in 30 Days -->
-    <recordLookups>
-        <name>Get_Expiring_Contracts_30</name>
-        <label>Get Contracts Expiring in 30 Days</label>
-        <locationX>176</locationX>
-        <locationY>158</locationY>
+Contract Title: {!Loop_30_Day_Contracts.Contract_Title__c}
+Counterparty: {!Loop_30_Day_Contracts.Counterparty_Name__c}
+Contract Value: {!Loop_30_Day_Contracts.Contract_Value__c}
+End Date: {!Loop_30_Day_Contracts.End_Date__c}
+Auto Renew: {!Loop_30_Day_Contracts.Auto_Renew__c}
+
+Please take immediate action to renew, renegotiate, or prepare for contract termination.</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+
+    <!-- Send 60-Day Reminder -->
+    <actionCalls>
+        <name>Send_60_Day_Reminder</name>
+        <label>Send 60-Day Expiration Reminder</label>
+        <locationX>666</locationX>
+        <locationY>518</locationY>
         <connector>
-            <targetReference>Decision_Has_30_Day_Contracts</targetReference>
+            <targetReference>Loop_60_Day_Contracts</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>End_Date__c</field>
-            <operator>EqualTo</operator>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
             <value>
-                <elementReference>frmDate30Days</elementReference>
+                <elementReference>Loop_60_Day_Contracts.Staff_Liaison__r.Email</elementReference>
             </value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operator>In</operator>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
             <value>
-                <stringValue>Active</stringValue>
+                <stringValue>Reminder: Contract Expiring in 60 Days - {!Loop_60_Day_Contracts.Contract_Title__c}</stringValue>
             </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
             <value>
-                <stringValue>Fully Executed</stringValue>
+                <stringValue>This is a reminder that the following contract will expire in 60 days:
+
+Contract Title: {!Loop_60_Day_Contracts.Contract_Title__c}
+Counterparty: {!Loop_60_Day_Contracts.Counterparty_Name__c}
+Contract Value: {!Loop_60_Day_Contracts.Contract_Value__c}
+End Date: {!Loop_60_Day_Contracts.End_Date__c}
+Auto Renew: {!Loop_60_Day_Contracts.Auto_Renew__c}
+
+Please begin planning for renewal or termination of this contract.</stringValue>
             </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>YGSF_Contract__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
+        </inputParameters>
+    </actionCalls>
+
+    <!-- Send 90-Day Reminder -->
+    <actionCalls>
+        <name>Send_90_Day_Reminder</name>
+        <label>Send 90-Day Expiration Reminder</label>
+        <locationX>980</locationX>
+        <locationY>518</locationY>
+        <connector>
+            <targetReference>Loop_90_Day_Contracts</targetReference>
+        </connector>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Loop_90_Day_Contracts.Staff_Liaison__r.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Notice: Contract Expiring in 90 Days - {!Loop_90_Day_Contracts.Contract_Title__c}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>This is an advance notice that the following contract will expire in 90 days:
+
+Contract Title: {!Loop_90_Day_Contracts.Contract_Title__c}
+Counterparty: {!Loop_90_Day_Contracts.Counterparty_Name__c}
+Contract Value: {!Loop_90_Day_Contracts.Contract_Value__c}
+End Date: {!Loop_90_Day_Contracts.End_Date__c}
+Auto Renew: {!Loop_90_Day_Contracts.Auto_Renew__c}
+
+Please review the contract and determine if renewal or renegotiation is needed.</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
 
     <!-- Decision: Any 30-day contracts? -->
     <decisions>
@@ -98,94 +171,6 @@
         </rules>
     </decisions>
 
-    <!-- Loop 30-Day Contracts -->
-    <loops>
-        <name>Loop_30_Day_Contracts</name>
-        <label>Loop 30-Day Expiring Contracts</label>
-        <locationX>176</locationX>
-        <locationY>398</locationY>
-        <collectionReference>Get_Expiring_Contracts_30</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Send_30_Day_Reminder</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Get_Expiring_Contracts_60</targetReference>
-        </noMoreValuesConnector>
-    </loops>
-
-    <!-- Send 30-Day Reminder -->
-    <actionCalls>
-        <name>Send_30_Day_Reminder</name>
-        <label>Send 30-Day Expiration Reminder</label>
-        <locationX>352</locationX>
-        <locationY>518</locationY>
-        <connector>
-            <targetReference>Loop_30_Day_Contracts</targetReference>
-        </connector>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailAddressesArray</name>
-            <value>
-                <elementReference>Loop_30_Day_Contracts.Staff_Liaison__r.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <stringValue>URGENT: Contract Expiring in 30 Days - {!Loop_30_Day_Contracts.Contract_Title__c}</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <stringValue>This is an urgent reminder that the following contract will expire in 30 days:
-
-Contract Title: {!Loop_30_Day_Contracts.Contract_Title__c}
-Counterparty: {!Loop_30_Day_Contracts.Counterparty_Name__c}
-Contract Value: {!Loop_30_Day_Contracts.Contract_Value__c}
-End Date: {!Loop_30_Day_Contracts.End_Date__c}
-Auto Renew: {!Loop_30_Day_Contracts.Auto_Renew__c}
-
-Please take immediate action to renew, renegotiate, or prepare for contract termination.</stringValue>
-            </value>
-        </inputParameters>
-    </actionCalls>
-
-    <!-- Get Contracts Expiring in 60 Days -->
-    <recordLookups>
-        <name>Get_Expiring_Contracts_60</name>
-        <label>Get Contracts Expiring in 60 Days</label>
-        <locationX>490</locationX>
-        <locationY>158</locationY>
-        <connector>
-            <targetReference>Decision_Has_60_Day_Contracts</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>End_Date__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>frmDate60Days</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operator>In</operator>
-            <value>
-                <stringValue>Active</stringValue>
-            </value>
-            <value>
-                <stringValue>Fully Executed</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>YGSF_Contract__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-
     <!-- Decision: Any 60-day contracts? -->
     <decisions>
         <name>Decision_Has_60_Day_Contracts</name>
@@ -213,94 +198,6 @@ Please take immediate action to renew, renegotiate, or prepare for contract term
         </rules>
     </decisions>
 
-    <!-- Loop 60-Day Contracts -->
-    <loops>
-        <name>Loop_60_Day_Contracts</name>
-        <label>Loop 60-Day Expiring Contracts</label>
-        <locationX>490</locationX>
-        <locationY>398</locationY>
-        <collectionReference>Get_Expiring_Contracts_60</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Send_60_Day_Reminder</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Get_Expiring_Contracts_90</targetReference>
-        </noMoreValuesConnector>
-    </loops>
-
-    <!-- Send 60-Day Reminder -->
-    <actionCalls>
-        <name>Send_60_Day_Reminder</name>
-        <label>Send 60-Day Expiration Reminder</label>
-        <locationX>666</locationX>
-        <locationY>518</locationY>
-        <connector>
-            <targetReference>Loop_60_Day_Contracts</targetReference>
-        </connector>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailAddressesArray</name>
-            <value>
-                <elementReference>Loop_60_Day_Contracts.Staff_Liaison__r.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <stringValue>Reminder: Contract Expiring in 60 Days - {!Loop_60_Day_Contracts.Contract_Title__c}</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <stringValue>This is a reminder that the following contract will expire in 60 days:
-
-Contract Title: {!Loop_60_Day_Contracts.Contract_Title__c}
-Counterparty: {!Loop_60_Day_Contracts.Counterparty_Name__c}
-Contract Value: {!Loop_60_Day_Contracts.Contract_Value__c}
-End Date: {!Loop_60_Day_Contracts.End_Date__c}
-Auto Renew: {!Loop_60_Day_Contracts.Auto_Renew__c}
-
-Please begin planning for renewal or termination of this contract.</stringValue>
-            </value>
-        </inputParameters>
-    </actionCalls>
-
-    <!-- Get Contracts Expiring in 90 Days -->
-    <recordLookups>
-        <name>Get_Expiring_Contracts_90</name>
-        <label>Get Contracts Expiring in 90 Days</label>
-        <locationX>804</locationX>
-        <locationY>158</locationY>
-        <connector>
-            <targetReference>Decision_Has_90_Day_Contracts</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>End_Date__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>frmDate90Days</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operator>In</operator>
-            <value>
-                <stringValue>Active</stringValue>
-            </value>
-            <value>
-                <stringValue>Fully Executed</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>YGSF_Contract__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-
     <!-- Decision: Any 90-day contracts? -->
     <decisions>
         <name>Decision_Has_90_Day_Contracts</name>
@@ -325,6 +222,38 @@ Please begin planning for renewal or termination of this contract.</stringValue>
         </rules>
     </decisions>
 
+    <!-- Loop 30-Day Contracts -->
+    <loops>
+        <name>Loop_30_Day_Contracts</name>
+        <label>Loop 30-Day Expiring Contracts</label>
+        <locationX>176</locationX>
+        <locationY>398</locationY>
+        <collectionReference>Get_Expiring_Contracts_30</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Send_30_Day_Reminder</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_Expiring_Contracts_60</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+
+    <!-- Loop 60-Day Contracts -->
+    <loops>
+        <name>Loop_60_Day_Contracts</name>
+        <label>Loop 60-Day Expiring Contracts</label>
+        <locationX>490</locationX>
+        <locationY>398</locationY>
+        <collectionReference>Get_Expiring_Contracts_60</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Send_60_Day_Reminder</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_Expiring_Contracts_90</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+
     <!-- Loop 90-Day Contracts -->
     <loops>
         <name>Loop_90_Day_Contracts</name>
@@ -338,43 +267,105 @@ Please begin planning for renewal or termination of this contract.</stringValue>
         </nextValueConnector>
     </loops>
 
-    <!-- Send 90-Day Reminder -->
-    <actionCalls>
-        <name>Send_90_Day_Reminder</name>
-        <label>Send 90-Day Expiration Reminder</label>
-        <locationX>980</locationX>
-        <locationY>518</locationY>
+    <!-- Get Contracts Expiring in 30 Days -->
+    <recordLookups>
+        <name>Get_Expiring_Contracts_30</name>
+        <label>Get Contracts Expiring in 30 Days</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
         <connector>
-            <targetReference>Loop_90_Day_Contracts</targetReference>
+            <targetReference>Decision_Has_30_Day_Contracts</targetReference>
         </connector>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailAddressesArray</name>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>End_Date__c</field>
+            <operator>EqualTo</operator>
             <value>
-                <elementReference>Loop_90_Day_Contracts.Staff_Liaison__r.Email</elementReference>
+                <elementReference>frmDate30Days</elementReference>
             </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>In</operator>
             <value>
-                <stringValue>Notice: Contract Expiring in 90 Days - {!Loop_90_Day_Contracts.Contract_Title__c}</stringValue>
+                <stringValue>Active;Fully Executed</stringValue>
             </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <stringValue>This is an advance notice that the following contract will expire in 90 days:
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>YGSF_Contract__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
 
-Contract Title: {!Loop_90_Day_Contracts.Contract_Title__c}
-Counterparty: {!Loop_90_Day_Contracts.Counterparty_Name__c}
-Contract Value: {!Loop_90_Day_Contracts.Contract_Value__c}
-End Date: {!Loop_90_Day_Contracts.End_Date__c}
-Auto Renew: {!Loop_90_Day_Contracts.Auto_Renew__c}
-
-Please review the contract and determine if renewal or renegotiation is needed.</stringValue>
+    <!-- Get Contracts Expiring in 60 Days -->
+    <recordLookups>
+        <name>Get_Expiring_Contracts_60</name>
+        <label>Get Contracts Expiring in 60 Days</label>
+        <locationX>490</locationX>
+        <locationY>158</locationY>
+        <connector>
+            <targetReference>Decision_Has_60_Day_Contracts</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>End_Date__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>frmDate60Days</elementReference>
             </value>
-        </inputParameters>
-    </actionCalls>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>In</operator>
+            <value>
+                <stringValue>Active;Fully Executed</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>YGSF_Contract__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+
+    <!-- Get Contracts Expiring in 90 Days -->
+    <recordLookups>
+        <name>Get_Expiring_Contracts_90</name>
+        <label>Get Contracts Expiring in 90 Days</label>
+        <locationX>804</locationX>
+        <locationY>158</locationY>
+        <connector>
+            <targetReference>Decision_Has_90_Day_Contracts</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>End_Date__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>frmDate90Days</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>In</operator>
+            <value>
+                <stringValue>Active;Fully Executed</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>YGSF_Contract__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+
+    <!-- Start: Schedule-Triggered, runs daily -->
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Expiring_Contracts_30</targetReference>
+        </connector>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2026-01-01</startDate>
+            <startTime>07:00:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
 </Flow>

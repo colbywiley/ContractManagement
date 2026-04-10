@@ -66,7 +66,7 @@
     <parentFlexiPage>YGSF_Contract__c</parentFlexiPage>
     <sobjectType>YGSF_Contract__c</sobjectType>
     <template>
-        <name>flexipage:defaultPageTemplateThreeColumn</name>
+        <name>flexipage:RecordPageTemplateThreeColumn</name>
     </template>
     <type>RecordPage</type>
 </FlexiPage>

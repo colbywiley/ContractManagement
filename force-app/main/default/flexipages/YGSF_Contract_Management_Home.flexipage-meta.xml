@@ -55,7 +55,7 @@
     </flexiPageRegions>
     <masterLabel>YGSF Contract Management Home</masterLabel>
     <template>
-        <name>flexipage:defaultPageTemplateThreeColumn</name>
+        <name>flexipage:defaultAppHomeTemplate</name>
     </template>
-    <type>HomePage</type>
+    <type>AppPage</type>
 </FlexiPage>

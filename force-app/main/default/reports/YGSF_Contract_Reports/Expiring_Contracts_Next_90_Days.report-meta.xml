@@ -43,6 +43,7 @@
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>YGSF_Contract__c.End_Date__c</dateColumn>
-        <interval>NEXT_N_DAYS:90</interval>
+        <interval>NEXT_N_DAYS</interval>
+        <offset>90</offset>
     </timeFrameFilter>
 </Report>

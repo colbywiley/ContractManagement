@@ -7,25 +7,152 @@
     <processType>AutoLaunchedFlow</processType>
     <status>Active</status>
 
-    <!-- Start: Record-Triggered on YGSF_Contract__c After Update, Status__c changed -->
-    <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Decision_Status_Value</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Status__c</field>
-            <operator>IsChanged</operator>
+    <!-- Send Submitted Notification Email -->
+    <actionCalls>
+        <name>Send_Submitted_Notification</name>
+        <label>Send Submitted Notification</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>$Record.Staff_Liaison__r.Email</elementReference>
             </value>
-        </filters>
-        <object>YGSF_Contract__c</object>
-        <recordTriggerType>Update</recordTriggerType>
-        <triggerType>RecordAfterSave</triggerType>
-    </start>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Contract Submitted: {!$Record.Contract_Title__c}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>Your contract "{!$Record.Contract_Title__c}" has been submitted for approval.
+
+Contract Details:
+- Contract Type: {!$Record.Contract_Type__c}
+- Contract Subject: {!$Record.Contract_Subject_Picklist__c}
+- Contract Value: {!$Record.Contract_Value__c}
+- Approval Path: {!$Record.Approval_Path__c}
+
+You will be notified as the contract progresses through the approval process.</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+
+    <!-- Send Fully Executed Notification -->
+    <actionCalls>
+        <name>Send_Executed_Notification</name>
+        <label>Send Fully Executed Notification</label>
+        <locationX>490</locationX>
+        <locationY>458</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record.Staff_Liaison__r.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Contract Fully Executed: {!$Record.Contract_Title__c}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>Your contract "{!$Record.Contract_Title__c}" has been fully executed.
+
+Contract Details:
+- Contract Type: {!$Record.Contract_Type__c}
+- Counterparty: {!$Record.Counterparty_Name__c}
+- Contract Value: {!$Record.Contract_Value__c}
+- Execution Date: {!$Flow.CurrentDate}
+
+All required signatures have been obtained. Please ensure a copy of the executed contract is uploaded to the contract record.</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+
+    <!-- Send Legal Review Notification -->
+    <actionCalls>
+        <name>Send_Legal_Review_Notification</name>
+        <label>Send Legal Review Notification</label>
+        <locationX>804</locationX>
+        <locationY>458</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record.Staff_Liaison__r.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Contract In Legal Review: {!$Record.Contract_Title__c}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>Your contract "{!$Record.Contract_Title__c}" is now in legal review.
+
+Contract Details:
+- Contract Type: {!$Record.Contract_Type__c}
+- Contract Subject: {!$Record.Contract_Subject_Picklist__c}
+- Contract Value: {!$Record.Contract_Value__c}
+
+The Legal Department has acknowledged receipt of the contract for review. You will be notified when the review is complete.</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+
+    <!-- Send Generic Status Change Notification (default path) -->
+    <actionCalls>
+        <name>Send_Generic_Status_Notification</name>
+        <label>Send Status Change Notification</label>
+        <locationX>1118</locationX>
+        <locationY>338</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record.Staff_Liaison__r.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Contract Status Update: {!$Record.Contract_Title__c}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>The status of your contract "{!$Record.Contract_Title__c}" has been updated.
+
+New Status: {!$Record.Status__c}
+Previous Status: {!$Record__Prior.Status__c}
+
+Contract Details:
+- Contract Type: {!$Record.Contract_Type__c}
+- Counterparty: {!$Record.Counterparty_Name__c}
+- Contract Value: {!$Record.Contract_Value__c}</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
 
     <!-- Decision: Which status did it change to? -->
     <decisions>
@@ -102,43 +229,6 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
 
-    <!-- Send Submitted Notification Email -->
-    <actionCalls>
-        <name>Send_Submitted_Notification</name>
-        <label>Send Submitted Notification</label>
-        <locationX>176</locationX>
-        <locationY>458</locationY>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailAddressesArray</name>
-            <value>
-                <elementReference>$Record.Staff_Liaison__r.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <stringValue>Contract Submitted: {!$Record.Contract_Title__c}</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <stringValue>Your contract "{!$Record.Contract_Title__c}" has been submitted for approval.
-
-Contract Details:
-- Contract Type: {!$Record.Contract_Type__c}
-- Contract Subject: {!$Record.Contract_Subject_Picklist__c}
-- Contract Value: {!$Record.Contract_Value__c}
-- Approval Path: {!$Record.Approval_Path__c}
-
-You will be notified as the contract progresses through the approval process.</stringValue>
-            </value>
-        </inputParameters>
-    </actionCalls>
-
     <!-- Stamp Execution_Date__c -->
     <recordUpdates>
         <name>Stamp_Execution_Date</name>
@@ -156,43 +246,6 @@ You will be notified as the contract progresses through the approval process.</s
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
-
-    <!-- Send Fully Executed Notification -->
-    <actionCalls>
-        <name>Send_Executed_Notification</name>
-        <label>Send Fully Executed Notification</label>
-        <locationX>490</locationX>
-        <locationY>458</locationY>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailAddressesArray</name>
-            <value>
-                <elementReference>$Record.Staff_Liaison__r.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <stringValue>Contract Fully Executed: {!$Record.Contract_Title__c}</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <stringValue>Your contract "{!$Record.Contract_Title__c}" has been fully executed.
-
-Contract Details:
-- Contract Type: {!$Record.Contract_Type__c}
-- Counterparty: {!$Record.Counterparty_Name__c}
-- Contract Value: {!$Record.Contract_Value__c}
-- Execution Date: {!$Flow.CurrentDate}
-
-All required signatures have been obtained. Please ensure a copy of the executed contract is uploaded to the contract record.</stringValue>
-            </value>
-        </inputParameters>
-    </actionCalls>
 
     <!-- Stamp Legal_Acknowledgment_Date__c -->
     <recordUpdates>
@@ -212,76 +265,23 @@ All required signatures have been obtained. Please ensure a copy of the executed
         <inputReference>$Record</inputReference>
     </recordUpdates>
 
-    <!-- Send Legal Review Notification -->
-    <actionCalls>
-        <name>Send_Legal_Review_Notification</name>
-        <label>Send Legal Review Notification</label>
-        <locationX>804</locationX>
-        <locationY>458</locationY>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailAddressesArray</name>
+    <!-- Start: Record-Triggered on YGSF_Contract__c After Update, Status__c changed -->
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Decision_Status_Value</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>IsChanged</operator>
             <value>
-                <elementReference>$Record.Staff_Liaison__r.Email</elementReference>
+                <booleanValue>true</booleanValue>
             </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <stringValue>Contract In Legal Review: {!$Record.Contract_Title__c}</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <stringValue>Your contract "{!$Record.Contract_Title__c}" is now in legal review.
-
-Contract Details:
-- Contract Type: {!$Record.Contract_Type__c}
-- Contract Subject: {!$Record.Contract_Subject_Picklist__c}
-- Contract Value: {!$Record.Contract_Value__c}
-
-The Legal Department has acknowledged receipt of the contract for review. You will be notified when the review is complete.</stringValue>
-            </value>
-        </inputParameters>
-    </actionCalls>
-
-    <!-- Send Generic Status Change Notification (default path) -->
-    <actionCalls>
-        <name>Send_Generic_Status_Notification</name>
-        <label>Send Status Change Notification</label>
-        <locationX>1118</locationX>
-        <locationY>338</locationY>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailAddressesArray</name>
-            <value>
-                <elementReference>$Record.Staff_Liaison__r.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <stringValue>Contract Status Update: {!$Record.Contract_Title__c}</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <stringValue>The status of your contract "{!$Record.Contract_Title__c}" has been updated.
-
-New Status: {!$Record.Status__c}
-Previous Status: {!$Record__Prior.Status__c}
-
-Contract Details:
-- Contract Type: {!$Record.Contract_Type__c}
-- Counterparty: {!$Record.Counterparty_Name__c}
-- Contract Value: {!$Record.Contract_Value__c}</stringValue>
-            </value>
-        </inputParameters>
-    </actionCalls>
+        </filters>
+        <object>YGSF_Contract__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
 </Flow>

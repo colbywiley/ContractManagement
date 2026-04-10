@@ -9,4 +9,60 @@
         <relationship>Contract_Documents__r</relationship>
     </join>
     <label>Contracts with Documents</label>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Id</field>
+            <table>YGSF_Contract__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>YGSF_Contract__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Contract_Title__c</field>
+            <table>YGSF_Contract__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Contract_Type__c</field>
+            <table>YGSF_Contract__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Status__c</field>
+            <table>YGSF_Contract__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Counterparty_Name__c</field>
+            <table>YGSF_Contract__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Staff_Liaison__c</field>
+            <table>YGSF_Contract__c</table>
+        </columns>
+        <masterLabel>Contracts</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>YGSF_Contract__c.Contract_Documents__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Document_Type__c</field>
+            <table>YGSF_Contract__c.Contract_Documents__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Expiration_Date__c</field>
+            <table>YGSF_Contract__c.Contract_Documents__r</table>
+        </columns>
+        <masterLabel>Contract Documents</masterLabel>
+    </sections>
 </ReportType>

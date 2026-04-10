@@ -9,4 +9,50 @@
         <relationship>Approval_History__r</relationship>
     </join>
     <label>Contracts with Approval History</label>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Id</field>
+            <table>YGSF_Contract__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>YGSF_Contract__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Contract_Title__c</field>
+            <table>YGSF_Contract__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Contract_Type__c</field>
+            <table>YGSF_Contract__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Status__c</field>
+            <table>YGSF_Contract__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Counterparty_Name__c</field>
+            <table>YGSF_Contract__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Staff_Liaison__c</field>
+            <table>YGSF_Contract__c</table>
+        </columns>
+        <masterLabel>Contracts</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>YGSF_Contract__c.Approval_History__r</table>
+        </columns>
+        <masterLabel>Approval History</masterLabel>
+    </sections>
 </ReportType>

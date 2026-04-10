@@ -40,6 +40,7 @@
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>YGSF_Contract_Document__c.Expiration_Date__c</dateColumn>
-        <interval>NEXT_N_DAYS:30</interval>
+        <interval>NEXT_N_DAYS</interval>
+        <offset>30</offset>
     </timeFrameFilter>
 </Report>

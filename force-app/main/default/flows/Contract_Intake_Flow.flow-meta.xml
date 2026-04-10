@@ -7,14 +7,27 @@
     <processType>Flow</processType>
     <status>Active</status>
 
-    <!-- Variables -->
-    <variables>
-        <name>varContractRecordId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>true</isOutput>
-    </variables>
+    <!-- Navigate to new record -->
+    <actionCalls>
+        <name>Navigate_To_Record</name>
+        <label>Navigate To Record</label>
+        <locationX>176</locationX>
+        <locationY>758</locationY>
+        <actionName>flowruntime:navigate</actionName>
+        <actionType>flow</actionType>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <stringValue>record</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>Create_Contract_Record</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
 
     <!-- Picklist Choice Sets -->
     <dynamicChoiceSets>
@@ -44,14 +57,126 @@
         <picklistObject>YGSF_Contract__c</picklistObject>
     </dynamicChoiceSets>
 
-    <!-- Start -->
-    <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
+    <!-- Create Record -->
+    <recordCreates>
+        <name>Create_Contract_Record</name>
+        <label>Create Contract Record</label>
+        <locationX>176</locationX>
+        <locationY>638</locationY>
         <connector>
-            <targetReference>Contract_Basics</targetReference>
+            <targetReference>Navigate_To_Record</targetReference>
         </connector>
-    </start>
+        <inputAssignments>
+            <field>Contract_Title__c</field>
+            <value>
+                <elementReference>Contract_Title</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contract_Type__c</field>
+            <value>
+                <elementReference>Contract_Type</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contract_Subject_Picklist__c</field>
+            <value>
+                <elementReference>Contract_Subject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Location__c</field>
+            <value>
+                <elementReference>varLocationId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Branch__c</field>
+            <value>
+                <elementReference>Branch</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description__c</field>
+            <value>
+                <elementReference>Description</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Counterparty_Name__c</field>
+            <value>
+                <elementReference>Counterparty_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Counterparty_Account__c</field>
+            <value>
+                <elementReference>varCounterpartyAccountId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Counterparty_Contact__c</field>
+            <value>
+                <elementReference>varCounterpartyContactId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contract_Value__c</field>
+            <value>
+                <elementReference>Contract_Value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Start_Date__c</field>
+            <value>
+                <elementReference>Start_Date</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>End_Date__c</field>
+            <value>
+                <elementReference>End_Date</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Desired_Execution_Date__c</field>
+            <value>
+                <elementReference>Desired_Execution_Date</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Payment_Method__c</field>
+            <value>
+                <elementReference>Payment_Method</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Auto_Renew__c</field>
+            <value>
+                <elementReference>Auto_Renew</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Renewal_Term_Months__c</field>
+            <value>
+                <elementReference>Renewal_Term_Months</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Draft</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Staff_Liaison__c</field>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>YGSF_Contract__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
 
     <!-- Screen 1: Contract Basics -->
     <screens>
@@ -332,7 +457,23 @@
         </fields>
     </screens>
 
-    <!-- Variables for lookup outputs -->
+    <!-- Start -->
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Contract_Basics</targetReference>
+        </connector>
+    </start>
+
+    <!-- Variables -->
+    <variables>
+        <name>varContractRecordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
     <variables>
         <name>varLocationId</name>
         <dataType>String</dataType>
@@ -354,147 +495,4 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
-
-    <!-- Create Record -->
-    <recordCreates>
-        <name>Create_Contract_Record</name>
-        <label>Create Contract Record</label>
-        <locationX>176</locationX>
-        <locationY>638</locationY>
-        <connector>
-            <targetReference>Navigate_To_Record</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>Contract_Title__c</field>
-            <value>
-                <elementReference>Contract_Title</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Contract_Type__c</field>
-            <value>
-                <elementReference>Contract_Type</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Contract_Subject_Picklist__c</field>
-            <value>
-                <elementReference>Contract_Subject</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Location__c</field>
-            <value>
-                <elementReference>varLocationId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Branch__c</field>
-            <value>
-                <elementReference>Branch</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Description__c</field>
-            <value>
-                <elementReference>Description</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Counterparty_Name__c</field>
-            <value>
-                <elementReference>Counterparty_Name</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Counterparty_Account__c</field>
-            <value>
-                <elementReference>varCounterpartyAccountId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Counterparty_Contact__c</field>
-            <value>
-                <elementReference>varCounterpartyContactId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Contract_Value__c</field>
-            <value>
-                <elementReference>Contract_Value</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Start_Date__c</field>
-            <value>
-                <elementReference>Start_Date</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>End_Date__c</field>
-            <value>
-                <elementReference>End_Date</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Desired_Execution_Date__c</field>
-            <value>
-                <elementReference>Desired_Execution_Date</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Payment_Method__c</field>
-            <value>
-                <elementReference>Payment_Method</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Auto_Renew__c</field>
-            <value>
-                <elementReference>Auto_Renew</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Renewal_Term_Months__c</field>
-            <value>
-                <elementReference>Renewal_Term_Months</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Status__c</field>
-            <value>
-                <stringValue>Draft</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Staff_Liaison__c</field>
-            <value>
-                <elementReference>$User.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <object>YGSF_Contract__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordCreates>
-
-    <!-- Navigate to new record -->
-    <actionCalls>
-        <name>Navigate_To_Record</name>
-        <label>Navigate To Record</label>
-        <locationX>176</locationX>
-        <locationY>758</locationY>
-        <actionName>flowruntime:navigate</actionName>
-        <actionType>flowRuntime</actionType>
-        <inputParameters>
-            <name>type</name>
-            <value>
-                <stringValue>record</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>recordId</name>
-            <value>
-                <elementReference>Create_Contract_Record</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
 </Flow>
