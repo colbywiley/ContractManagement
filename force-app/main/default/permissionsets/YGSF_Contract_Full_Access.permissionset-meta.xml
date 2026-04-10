@@ -53,6 +53,10 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <!-- Apex class access -->
+        <classAccesses>
+        <apexClass>ContractSubjectOptionsInvocable</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>ContractActionPanelController</apexClass>
         <enabled>true</enabled>
