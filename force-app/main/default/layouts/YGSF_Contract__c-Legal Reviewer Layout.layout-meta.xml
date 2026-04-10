@@ -317,7 +317,7 @@
         <fields>Actor_Role__c</fields>
         <fields>Action_Date__c</fields>
         <fields>SLA_Met__c</fields>
-        <relatedList>Approval_History</relatedList>
+        <relatedList>Approval_History__r</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -325,7 +325,7 @@
         <fields>Signatory_Role__c</fields>
         <fields>Signed__c</fields>
         <fields>Signed_Date__c</fields>
-        <relatedList>Contract_Signatories</relatedList>
+        <relatedList>Contract_Signatories__r</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>

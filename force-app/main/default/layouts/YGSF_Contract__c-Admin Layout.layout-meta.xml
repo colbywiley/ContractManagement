@@ -373,7 +373,7 @@
         <fields>File_Name__c</fields>
         <fields>Upload_Date__c</fields>
         <fields>Status__c</fields>
-        <relatedList>Contract_Documents</relatedList>
+        <relatedList>Contract_Documents__r</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -382,14 +382,14 @@
         <fields>Actor_Role__c</fields>
         <fields>Action_Date__c</fields>
         <fields>SLA_Met__c</fields>
-        <relatedList>Approval_History</relatedList>
+        <relatedList>Approval_History__r</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>Renewal_Date__c</fields>
         <fields>Renewal_Type__c</fields>
         <fields>New_Value__c</fields>
-        <relatedList>Renewals_From</relatedList>
+        <relatedList>Renewals_From__r</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>

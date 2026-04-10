@@ -289,21 +289,21 @@
         <fields>Signatory_Role__c</fields>
         <fields>Signed__c</fields>
         <fields>Signed_Date__c</fields>
-        <relatedList>Contract_Signatories</relatedList>
+        <relatedList>Contract_Signatories__r</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>Document_Type__c</fields>
         <fields>File_Name__c</fields>
         <fields>Status__c</fields>
-        <relatedList>Contract_Documents</relatedList>
+        <relatedList>Contract_Documents__r</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>Renewal_Date__c</fields>
         <fields>Renewal_Type__c</fields>
         <fields>New_Value__c</fields>
-        <relatedList>Renewals_From</relatedList>
+        <relatedList>Renewals_From__r</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
