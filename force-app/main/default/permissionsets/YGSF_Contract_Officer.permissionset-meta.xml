@@ -72,20 +72,10 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>YGSF_Contract__c.Status__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>YGSF_Contract__c.Notes__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <!-- YGSF_Contract__c read-only fields -->
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>YGSF_Contract__c.Contract_Title__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>YGSF_Contract__c.Contract_Type__c</field>
@@ -335,11 +325,6 @@
     <!-- Contract_Approval_History__c read-only fields -->
     <fieldPermissions>
         <editable>false</editable>
-        <field>Contract_Approval_History__c.Action__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Contract_Approval_History__c.Actor__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -408,11 +393,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contract_Signatory__c.Signatory__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Contract_Signatory__c.Signatory_Role__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
