@@ -410,6 +410,16 @@
             <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <scale>0</scale>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Auto_Renew</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
     </screens>
 
@@ -430,7 +440,7 @@
         <fields>
             <name>Section_Approvers_Header</name>
             <fieldType>DisplayText</fieldType>
-            <fieldText>&lt;p&gt;&lt;b&gt;Assign the approvers for this contract.&lt;/b&gt; The system will determine which approvers are required based on the contract subject and value, but please populate all relevant approvers.&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;b&gt;Assign the approvers for this contract.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;The system will auto-determine the approval path based on the subject and value you selected. Populate the approvers below as applicable:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;High-risk subjects&lt;/b&gt; (Youth Programs, ICAs, Professional Services, etc.): Legal Reviewer + SVP + Officer&lt;/p&gt;&lt;p&gt;&lt;b&gt;Moderate-risk subjects&lt;/b&gt; (Health Screening, Photographer, Security, etc.): Legal Reviewer + SVP + VP&lt;/p&gt;&lt;p&gt;&lt;b&gt;Operational subjects &amp;le; $10K&lt;/b&gt; (Construction, Maintenance, Events, etc.): Branch ED + VP&lt;/p&gt;&lt;p&gt;&lt;b&gt;Facility Use / User Group Agreements&lt;/b&gt;: Branch ED only&lt;/p&gt;</fieldText>
         </fields>
         <fields>
             <name>Legal_Reviewer</name>

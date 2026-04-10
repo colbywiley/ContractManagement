@@ -137,6 +137,11 @@
                 <label>NDA</label>
             </value>
             <value>
+                <fullName>Photographer</fullName>
+                <default>false</default>
+                <label>Photographer</label>
+            </value>
+            <value>
                 <fullName>PII or HIPAA Related Contract</fullName>
                 <default>false</default>
                 <label>PII or HIPAA Related Contract</label>
