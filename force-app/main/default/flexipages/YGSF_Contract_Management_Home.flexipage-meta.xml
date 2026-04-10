@@ -15,7 +15,7 @@
                 </componentInstanceProperties>
             </componentInstance>
         </itemInstances>
-        <name>column1</name>
+        <name>left</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -24,7 +24,7 @@
                 <componentName>runtime_sales_activities:todayTaskContainer</componentName>
             </componentInstance>
         </itemInstances>
-        <name>column2</name>
+        <name>right</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>

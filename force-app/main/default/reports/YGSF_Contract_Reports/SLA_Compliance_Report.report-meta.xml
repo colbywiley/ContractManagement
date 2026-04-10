@@ -16,9 +16,6 @@
         <field>YGSF_Contract__c.Days_In_Review__c</field>
     </columns>
     <columns>
-        <field>YGSF_Contract__c.SLA_Status__c</field>
-    </columns>
-    <columns>
         <field>YGSF_Contract__c.Is_Overdue__c</field>
     </columns>
     <columns>

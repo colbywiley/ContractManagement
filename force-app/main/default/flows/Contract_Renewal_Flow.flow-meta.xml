@@ -7,28 +7,6 @@
     <processType>Flow</processType>
     <status>Active</status>
 
-    <!-- Navigate to New Contract -->
-    <actionCalls>
-        <name>Navigate_To_New_Contract</name>
-        <label>Navigate To New Contract</label>
-        <locationX>176</locationX>
-        <locationY>998</locationY>
-        <actionName>flowruntime:navigate</actionName>
-        <actionType>flow</actionType>
-        <inputParameters>
-            <name>type</name>
-            <value>
-                <stringValue>record</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>recordId</name>
-            <value>
-                <elementReference>Create_Renewed_Contract</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-
     <!-- Picklist Choice Sets -->
     <dynamicChoiceSets>
         <name>renewalTypeChoices</name>
@@ -247,9 +225,6 @@
         <label>Update Original Contract Status</label>
         <locationX>176</locationX>
         <locationY>878</locationY>
-        <connector>
-            <targetReference>Navigate_To_New_Contract</targetReference>
-        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>

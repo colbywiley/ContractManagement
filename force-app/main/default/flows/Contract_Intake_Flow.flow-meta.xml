@@ -7,28 +7,6 @@
     <processType>Flow</processType>
     <status>Active</status>
 
-    <!-- Navigate to new record -->
-    <actionCalls>
-        <name>Navigate_To_Record</name>
-        <label>Navigate To Record</label>
-        <locationX>176</locationX>
-        <locationY>758</locationY>
-        <actionName>flowruntime:navigate</actionName>
-        <actionType>flow</actionType>
-        <inputParameters>
-            <name>type</name>
-            <value>
-                <stringValue>record</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>recordId</name>
-            <value>
-                <elementReference>Create_Contract_Record</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-
     <!-- Picklist Choice Sets -->
     <dynamicChoiceSets>
         <name>contractTypeChoices</name>
@@ -60,9 +38,6 @@
         <label>Create Contract Record</label>
         <locationX>176</locationX>
         <locationY>638</locationY>
-        <connector>
-            <targetReference>Navigate_To_Record</targetReference>
-        </connector>
         <inputAssignments>
             <field>Contract_Title__c</field>
             <value>

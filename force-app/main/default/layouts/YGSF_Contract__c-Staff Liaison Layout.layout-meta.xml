@@ -252,7 +252,7 @@
         <fields>File_Name__c</fields>
         <fields>Upload_Date__c</fields>
         <fields>Status__c</fields>
-        <relatedList>Contract_Documents</relatedList>
+        <relatedList>Contract_Documents__r</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

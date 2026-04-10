@@ -365,7 +365,7 @@
         <fields>Required__c</fields>
         <fields>Signed__c</fields>
         <fields>Signed_Date__c</fields>
-        <relatedList>Contract_Signatories</relatedList>
+        <relatedList>Contract_Signatories__r</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

@@ -50,30 +50,8 @@
             <value>Section 3.2.3 - ED and VP</value>
         </criteriaItems>
     </entryCriteria>
-    <finalApprovalActions>
-        <action>
-            <name>Set_Status_Pending_Signatures</name>
-            <type>FieldUpdate</type>
-        </action>
-    </finalApprovalActions>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
-    <finalRejectionActions>
-        <action>
-            <name>Set_Status_Rejected</name>
-            <type>FieldUpdate</type>
-        </action>
-    </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
-    <initialSubmissionActions>
-        <action>
-            <name>Set_Status_Submitted</name>
-            <type>FieldUpdate</type>
-        </action>
-        <action>
-            <name>Stamp_Submission_Date</name>
-            <type>FieldUpdate</type>
-        </action>
-    </initialSubmissionActions>
     <label>Section 3.2.3 Approval</label>
     <recordEditability>AdminOrCurrentApprover</recordEditability>
     <showApprovalHistory>true</showApprovalHistory>

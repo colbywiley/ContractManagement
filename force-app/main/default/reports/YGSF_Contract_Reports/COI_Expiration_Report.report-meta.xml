@@ -7,13 +7,13 @@
         <field>YGSF_Contract__c.Contract_Title__c</field>
     </columns>
     <columns>
-        <field>YGSF_Contract_Document__c.Document_Name__c</field>
+        <field>Contract_Document__c.Document_Name__c</field>
     </columns>
     <columns>
-        <field>YGSF_Contract_Document__c.Document_Type__c</field>
+        <field>Contract_Document__c.Document_Type__c</field>
     </columns>
     <columns>
-        <field>YGSF_Contract_Document__c.Expiration_Date__c</field>
+        <field>Contract_Document__c.Expiration_Date__c</field>
     </columns>
     <columns>
         <field>YGSF_Contract__c.Staff_Liaison__c</field>
@@ -24,7 +24,7 @@
     <description>Certificates of Insurance expiring within the next 30 days</description>
     <filter>
         <criteriaItems>
-            <column>YGSF_Contract_Document__c.Document_Type__c</column>
+            <column>Contract_Document__c.Document_Type__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
@@ -36,10 +36,10 @@
     <reportType>Contracts_with_Documents__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
-    <sortColumn>YGSF_Contract_Document__c.Expiration_Date__c</sortColumn>
+    <sortColumn>Contract_Document__c.Expiration_Date__c</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
-        <dateColumn>YGSF_Contract_Document__c.Expiration_Date__c</dateColumn>
+        <dateColumn>Contract_Document__c.Expiration_Date__c</dateColumn>
         <interval>INTERVAL_NEXT30</interval>
     </timeFrameFilter>
 </Report>

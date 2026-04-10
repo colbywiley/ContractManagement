@@ -17,7 +17,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>force:recordDetail</componentName>
+                <componentName>records:recordDetail</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
