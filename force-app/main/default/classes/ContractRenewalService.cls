@@ -17,7 +17,7 @@ public with sharing class ContractRenewalService {
         'Additional_Insured_Required__c', 'YGSF_Template_Used__c', 'Template_Name__c',
         'Payment_Method__c', 'Gift_Acceptance_Review__c',
         'Board_Approval_Required__c', 'Auto_Renew__c', 'Renewal_Term_Months__c',
-        'Branch__c', 'Notes__c'
+        'Notes__c'
     };
 
     /**
@@ -99,7 +99,6 @@ public with sharing class ContractRenewalService {
         renewal.Board_Approval_Required__c = original.Board_Approval_Required__c;
         renewal.Auto_Renew__c = original.Auto_Renew__c;
         renewal.Renewal_Term_Months__c = original.Renewal_Term_Months__c;
-        renewal.Branch__c = original.Branch__c;
         renewal.Notes__c = original.Notes__c;
 
         // Set renewal-specific values

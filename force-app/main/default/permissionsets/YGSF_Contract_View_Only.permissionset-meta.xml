@@ -77,11 +77,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>YGSF_Contract__c.Branch__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>YGSF_Contract__c.Start_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>

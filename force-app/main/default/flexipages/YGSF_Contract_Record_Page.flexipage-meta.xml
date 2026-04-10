@@ -154,20 +154,6 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Branch__c</fieldItem>
-                <identifier>RecordBranch_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-d22d3738-3e6a-4d80-9fde-78d3c70d3eb0</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
@@ -175,16 +161,6 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
                 <identifier>flexipage_column3</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-d22d3738-3e6a-4d80-9fde-78d3c70d3eb0</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column4</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-6d6e0839-469a-41bd-ad27-9ce4d341d998</name>
@@ -1240,7 +1216,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>Location and Branch</value>
+                    <value>Location</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection2</identifier>

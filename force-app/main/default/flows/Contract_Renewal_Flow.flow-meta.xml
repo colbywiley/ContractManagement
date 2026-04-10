@@ -58,12 +58,6 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Branch__c</field>
-            <value>
-                <elementReference>Get_Original_Contract.Branch__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>Counterparty_Name__c</field>
             <value>
                 <elementReference>Get_Original_Contract.Counterparty_Name__c</elementReference>

@@ -63,12 +63,6 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Branch__c</field>
-            <value>
-                <elementReference>Branch</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>Description__c</field>
             <value>
                 <elementReference>Description</elementReference>
@@ -252,13 +246,6 @@
                 <assignToReference>varLocationId</assignToReference>
                 <name>recordId</name>
             </outputParameters>
-        </fields>
-        <fields>
-            <name>Branch</name>
-            <dataType>String</dataType>
-            <fieldText>Branch</fieldText>
-            <fieldType>InputField</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
         </fields>
         <fields>
             <name>Description</name>
@@ -604,7 +591,7 @@
         <fields>
             <name>Review_Summary</name>
             <fieldType>DisplayText</fieldType>
-            <fieldText>&lt;p&gt;&lt;b&gt;Please review the contract details before submitting.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Contract Title:&lt;/b&gt; {!Contract_Title}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Contract Type:&lt;/b&gt; {!Contract_Type}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Contract Subject:&lt;/b&gt; {!Contract_Subject}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Branch:&lt;/b&gt; {!Branch}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Description:&lt;/b&gt; {!Description}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Counterparty Name:&lt;/b&gt; {!Counterparty_Name}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Contract Value:&lt;/b&gt; {!Contract_Value}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Start Date:&lt;/b&gt; {!Start_Date}&lt;/p&gt;&lt;p&gt;&lt;b&gt;End Date:&lt;/b&gt; {!End_Date}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Desired Execution Date:&lt;/b&gt; {!Desired_Execution_Date}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Payment Method:&lt;/b&gt; {!Payment_Method}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Auto Renew:&lt;/b&gt; {!Auto_Renew}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Renewal Term (Months):&lt;/b&gt; {!Renewal_Term_Months}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;b&gt;Please review the contract details before submitting.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Contract Title:&lt;/b&gt; {!Contract_Title}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Contract Type:&lt;/b&gt; {!Contract_Type}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Contract Subject:&lt;/b&gt; {!Contract_Subject}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Description:&lt;/b&gt; {!Description}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Counterparty Name:&lt;/b&gt; {!Counterparty_Name}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Contract Value:&lt;/b&gt; {!Contract_Value}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Start Date:&lt;/b&gt; {!Start_Date}&lt;/p&gt;&lt;p&gt;&lt;b&gt;End Date:&lt;/b&gt; {!End_Date}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Desired Execution Date:&lt;/b&gt; {!Desired_Execution_Date}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Payment Method:&lt;/b&gt; {!Payment_Method}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Auto Renew:&lt;/b&gt; {!Auto_Renew}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Renewal Term (Months):&lt;/b&gt; {!Renewal_Term_Months}&lt;/p&gt;</fieldText>
         </fields>
     </screens>
 
