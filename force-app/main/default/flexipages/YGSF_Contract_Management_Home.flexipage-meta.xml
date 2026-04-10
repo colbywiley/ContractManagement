@@ -8,6 +8,7 @@
         <itemInstances>
             <componentInstance>
                 <componentName>c:contractIntakeLauncher</componentName>
+                <identifier>c_contractIntakeLauncher</identifier>
             </componentInstance>
         </itemInstances>
         <name>region2</name>

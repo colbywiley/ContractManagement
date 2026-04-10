@@ -4,11 +4,13 @@
         <itemInstances>
             <componentInstance>
                 <componentName>force:highlightsPanel</componentName>
+                <identifier>force_highlightsPanel</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>c:approvalPathIndicator</componentName>
+                <identifier>c_approvalPathIndicator</identifier>
             </componentInstance>
         </itemInstances>
         <name>header</name>
@@ -18,31 +20,37 @@
         <itemInstances>
             <componentInstance>
                 <componentName>c:contractComplianceDashboard</componentName>
+                <identifier>c_contractComplianceDashboard</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>c:contractSLATimer</componentName>
+                <identifier>c_contractSLATimer</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>c:contractSignatureTracker</componentName>
+                <identifier>c_contractSignatureTracker</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>c:contractDocumentChecklist</componentName>
+                <identifier>c_contractDocumentChecklist</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>c:contractSubjectRulesViewer</componentName>
+                <identifier>c_contractSubjectRulesViewer</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>c:contractRenewalManager</componentName>
+                <identifier>c_contractRenewalManager</identifier>
             </componentInstance>
         </itemInstances>
         <name>main</name>
