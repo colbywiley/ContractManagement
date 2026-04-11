@@ -313,10 +313,8 @@ public with sharing class ContractActionPanelController {
                 ctx.statusVariant = 'warning';
                 ctx.statusIcon = 'utility:reassign';
                 ctx.actions.add(new ActionItem('beginLegalReview', 'Begin Legal Review', 'brand', 'utility:preview'));
-            } else if (ctx.hasPendingApproval || ((ctx.isBranchED || ctx.isAdmin) &&
-                contract.Approval_Path__c != null &&
-                (contract.Approval_Path__c.contains('3.2.3') || contract.Approval_Path__c.contains('3.2.4')))) {
-                // Section 3.2.3 / 3.2.4 - no legal review, goes straight to Branch ED
+            } else if (ctx.hasPendingApproval) {
+                // Section 3.2.3 / 3.2.4 - the specific assigned approver (Branch ED) sees buttons
                 ctx.guidanceMessage = 'This contract requires your review and approval.';
                 ctx.statusVariant = 'warning';
                 ctx.statusIcon = 'utility:task';
@@ -360,13 +358,13 @@ public with sharing class ContractActionPanelController {
 
         // ===== LEGAL REVIEW COMPLETE =====
         else if (status == 'Legal Review Complete') {
-            if (ctx.hasPendingApproval || ctx.isSVP || ctx.isVP || ctx.isOfficer || ctx.isBranchED || ctx.isAdmin) {
+            if (ctx.hasPendingApproval) {
+                // Only the specific user assigned to the current approval step sees buttons
                 String approverRole = '';
                 if (ctx.isSVP) approverRole = 'Senior Vice President';
                 else if (ctx.isVP) approverRole = 'Vice President';
                 else if (ctx.isOfficer) approverRole = 'Association Officer';
                 else if (ctx.isBranchED) approverRole = 'Branch Executive Director';
-                else if (ctx.isAdmin) approverRole = 'Administrator';
                 else approverRole = 'Approver';
 
                 ctx.guidanceMessage = 'Legal review is complete. As ' + approverRole + ', this contract requires your approval to proceed.';
