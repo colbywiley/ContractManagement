@@ -304,13 +304,18 @@ public with sharing class ContractActionPanelController {
 
         // ===== SUBMITTED =====
         else if (status == 'Submitted') {
-            if (ctx.isLegalReviewer && (contract.Approval_Path__c != null &&
-                (contract.Approval_Path__c.contains('3.2.1') || contract.Approval_Path__c.contains('3.2.2')))) {
-                ctx.guidanceMessage = 'This contract has been submitted and requires your legal review. Please review for risk, liability, and compliance within 5 business days.';
+            Boolean isLegalPath = contract.Approval_Path__c != null &&
+                (contract.Approval_Path__c.contains('3.2.1') || contract.Approval_Path__c.contains('3.2.2'));
+
+            if (isLegalPath && (ctx.isLegalReviewer || ctx.isAdmin)) {
+                // Any user with Legal Reviewer permission set (or Admin) can begin the review
+                ctx.guidanceMessage = 'This contract has been submitted and requires legal review. Please review for risk, liability, and compliance within 5 business days.';
                 ctx.statusVariant = 'warning';
                 ctx.statusIcon = 'utility:reassign';
                 ctx.actions.add(new ActionItem('beginLegalReview', 'Begin Legal Review', 'brand', 'utility:preview'));
-            } else if (ctx.hasPendingApproval && (ctx.isBranchED || ctx.isAdmin)) {
+            } else if (ctx.hasPendingApproval || ((ctx.isBranchED || ctx.isAdmin) &&
+                contract.Approval_Path__c != null &&
+                (contract.Approval_Path__c.contains('3.2.3') || contract.Approval_Path__c.contains('3.2.4')))) {
                 // Section 3.2.3 / 3.2.4 - no legal review, goes straight to Branch ED
                 ctx.guidanceMessage = 'This contract requires your review and approval.';
                 ctx.statusVariant = 'warning';
@@ -355,13 +360,14 @@ public with sharing class ContractActionPanelController {
 
         // ===== LEGAL REVIEW COMPLETE =====
         else if (status == 'Legal Review Complete') {
-            if (ctx.hasPendingApproval) {
+            if (ctx.hasPendingApproval || ctx.isSVP || ctx.isVP || ctx.isOfficer || ctx.isBranchED || ctx.isAdmin) {
                 String approverRole = '';
                 if (ctx.isSVP) approverRole = 'Senior Vice President';
                 else if (ctx.isVP) approverRole = 'Vice President';
                 else if (ctx.isOfficer) approverRole = 'Association Officer';
                 else if (ctx.isBranchED) approverRole = 'Branch Executive Director';
                 else if (ctx.isAdmin) approverRole = 'Administrator';
+                else approverRole = 'Approver';
 
                 ctx.guidanceMessage = 'Legal review is complete. As ' + approverRole + ', this contract requires your approval to proceed.';
                 ctx.statusVariant = 'warning';
