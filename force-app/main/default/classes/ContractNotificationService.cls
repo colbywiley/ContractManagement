@@ -35,20 +35,10 @@ public with sharing class ContractNotificationService {
 
         String contractUrl = getContractUrl(contract.Id);
 
-        // Confirmation to Staff Liaison
-        if (contract.Staff_Liaison__c != null) {
-            emails.add(buildEmail(
-                contract.Staff_Liaison__c,
-                SUBJECT_PREFIX + 'Submission Confirmation - ' + contractTitle,
-                'Your contract "' + contractTitle + '" has been successfully submitted for review. ' +
-                'You will receive notifications as the contract progresses through the approval process.\n\n' +
-                'Contract Status: ' + safeString(contract.Status__c) + '\n' +
-                'Approval Path: ' + safeString(contract.Approval_Path__c) + '\n\n' +
-                'View Contract: ' + contractUrl + DO_NOT_REPLY
-            ));
-        }
-
-        // Assignment notification to Legal Reviewer
+        // Assignment notification to Legal Reviewer (only our custom email here;
+        // Salesforce sends its own approval request email at each step).
+        // Staff Liaison already gets Salesforce's default "submitted for approval"
+        // confirmation, so we don't duplicate it here.
         if (contract.Legal_Reviewer__c != null
             && contract.Legal_Review_Required__c != 'Not Required') {
             emails.add(buildEmail(
