@@ -63,8 +63,10 @@ public with sharing class ContractActionPanelController {
     }
 
     /**
-     * @description Submit a Draft contract for review. Changes status to Submitted
-     * and programmatically submits for Salesforce approval process.
+     * @description Submit a Draft contract for review. Changes status to Submitted only.
+     * The Salesforce approval process is NOT invoked here - it's invoked later by
+     * submitForApprovalChain() when the executive approvals are needed (after Legal
+     * Review Complete, or immediately for paths without legal review).
      */
     @AuraEnabled
     public static void submitForReview(Id contractId) {
@@ -74,12 +76,16 @@ public with sharing class ContractActionPanelController {
         );
         update contract;
 
-        // Submit for approval process
-        Approval.ProcessSubmitRequest req = new Approval.ProcessSubmitRequest();
-        req.setObjectId(contractId);
-        req.setSubmitterId(UserInfo.getUserId());
-        req.setComments('Submitted for review via Contract Action Panel');
-        Approval.process(req);
+        // For Section 3.2.3 / 3.2.4 paths (no legal review), submit directly to
+        // approval process since the next step is executive approval.
+        YGSF_Contract__c queried = [
+            SELECT Approval_Path__c FROM YGSF_Contract__c WHERE Id = :contractId LIMIT 1
+        ];
+        if (queried.Approval_Path__c != null &&
+            (queried.Approval_Path__c.contains('3.2.3') || queried.Approval_Path__c.contains('3.2.4'))) {
+            submitToApprovalProcess(contractId, 'Submitted for approval via Contract Action Panel');
+        }
+        // For 3.2.1 / 3.2.2, don't submit yet - wait until Legal Review is complete
     }
 
     /**
@@ -94,8 +100,9 @@ public with sharing class ContractActionPanelController {
     }
 
     /**
-     * @description Legal reviewer completes their review and approves. Changes status
-     * to Legal Review Complete and approves the current approval step.
+     * @description Legal reviewer completes their review. Changes status to Legal
+     * Review Complete and submits to the approval process so the executive chain
+     * (SVP, VP, Officer) is notified only NOW after legal sign-off - not upfront.
      */
     @AuraEnabled
     public static void completeLegalReview(Id contractId, String comments) {
@@ -104,18 +111,19 @@ public with sharing class ContractActionPanelController {
             Status__c = 'Legal Review Complete'
         );
 
-        // Approve the legal review step in the approval process
-        approveCurrentStep(contractId, String.isBlank(comments) ? 'Legal review completed - approved' : comments);
+        // NOW submit to the approval process - first step is SVP (Legal step was
+        // removed from the approval process since our Action Panel handles it).
+        submitToApprovalProcess(contractId,
+            String.isBlank(comments) ? 'Legal review completed - advancing to executive approvals' : comments);
     }
 
     /**
      * @description Legal reviewer sends the contract back for revisions.
+     * No approval process rejection is needed since the contract hasn't been
+     * submitted to the approval process yet (that happens after legal completes).
      */
     @AuraEnabled
     public static void requestRevisions(Id contractId, String comments) {
-        // Reject the current approval step
-        rejectCurrentStep(contractId, String.isBlank(comments) ? 'Revisions requested by Legal' : comments);
-
         update new YGSF_Contract__c(
             Id = contractId,
             Status__c = 'Rejected',
@@ -189,6 +197,19 @@ public with sharing class ContractActionPanelController {
     }
 
     // ==================== Private Helpers ====================
+
+    /**
+     * @description Submits a contract to the Salesforce approval process.
+     * Called when executive approval chain is actually needed (not on initial
+     * submission to prevent premature notifications to approvers).
+     */
+    private static void submitToApprovalProcess(Id contractId, String comments) {
+        Approval.ProcessSubmitRequest req = new Approval.ProcessSubmitRequest();
+        req.setObjectId(contractId);
+        req.setSubmitterId(UserInfo.getUserId());
+        req.setComments(comments);
+        Approval.process(req);
+    }
 
     private static Boolean hasPermissionSet(String permSetName) {
         return [

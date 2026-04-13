@@ -18,18 +18,6 @@
         <allowDelegate>true</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>Legal_Reviewer__c</name>
-                <type>relatedUserField</type>
-            </approver>
-            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
-        </assignedApprover>
-        <label>Legal Review</label>
-        <name>Legal_Review</name>
-    </approvalStep>
-    <approvalStep>
-        <allowDelegate>true</allowDelegate>
-        <assignedApprover>
-            <approver>
                 <name>SVP_Approver__c</name>
                 <type>relatedUserField</type>
             </approver>
