@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Legal_Review_Before_Exec</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Legal_Review_Required_Before__c, NOT(Legal_Review_Complete__c), OR(ISPICKVAL(Status__c, "Pending Signatures"), ISPICKVAL(Status__c, "Fully Executed")))</errorConditionFormula>
+    <errorMessage>Legal Department review must be completed before this contract can proceed to signatures or execution.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,58 @@
+:host {
+    display: block;
+}
+
+.timer-card {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-radius: 0.375rem;
+    border-left: 4px solid transparent;
+}
+
+.timer-card.on-track {
+    background-color: var(--slds-g-color-success-base-95, #ebf7e6);
+    border-left-color: var(--slds-g-color-success-base-50, #2e844a);
+}
+
+.timer-card.completed {
+    background-color: var(--slds-g-color-success-base-95, #ebf7e6);
+    border-left-color: var(--slds-g-color-success-base-50, #2e844a);
+}
+
+.timer-card.approaching {
+    background-color: var(--slds-g-color-warning-base-95, #fdf2e3);
+    border-left-color: var(--slds-g-color-warning-base-60, #dd7a01);
+}
+
+.timer-card.breached {
+    background-color: var(--slds-g-color-error-base-95, #fce4e4);
+    border-left-color: var(--slds-g-color-error-base-40, #ea001e);
+}
+
+.timer-card.unknown {
+    background-color: var(--slds-g-color-neutral-base-95, #f3f3f3);
+    border-left-color: var(--slds-g-color-neutral-base-60, #939393);
+}
+
+.timer-label {
+    font-weight: 600;
+}
+
+.remaining-text {
+    font-weight: 500;
+}
+
+.timer-card.breached .remaining-text {
+    color: var(--slds-g-color-error-base-40, #ea001e);
+    font-weight: 700;
+}
+
+.timer-card.approaching .remaining-text {
+    color: var(--slds-g-color-warning-base-60, #dd7a01);
+    font-weight: 600;
+}
+
+.timer-card.on-track .remaining-text,
+.timer-card.completed .remaining-text {
+    color: var(--slds-g-color-success-base-50, #2e844a);
+}

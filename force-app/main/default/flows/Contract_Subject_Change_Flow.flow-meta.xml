@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <description>Record-Triggered Flow that fires after a YGSF_Contract__c record is updated when the Contract_Subject_Picklist__c field changes. Re-calls the ContractSubjectConfigInvocable Apex action to re-apply subject configuration defaults including approval path, legal review, template, and insurance requirements.</description>
+    <interviewLabel>Contract Subject Change {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contract Subject Change</label>
+    <processType>AutoLaunchedFlow</processType>
+    <status>Active</status>
+
+    <!-- Start: Record-Triggered on YGSF_Contract__c After Update, Contract_Subject_Picklist__c changed -->
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Subject_Not_Blank</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Contract_Subject_Picklist__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>YGSF_Contract__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+
+    <!-- Decision: Only proceed if the new subject is not blank -->
+    <decisions>
+        <name>Check_Subject_Not_Blank</name>
+        <label>Is Subject Populated?</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <defaultConnectorLabel>Subject Is Blank</defaultConnectorLabel>
+        <rules>
+            <name>Subject_Has_Value</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Contract_Subject_Picklist__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Reapply_Subject_Config</targetReference>
+            </connector>
+            <label>Subject Has Value</label>
+        </rules>
+    </decisions>
+
+    <!-- Call Apex Invocable: ContractSubjectConfigInvocable -->
+    <actionCalls>
+        <name>Reapply_Subject_Config</name>
+        <label>Re-Apply Subject Configuration</label>
+        <locationX>176</locationX>
+        <locationY>338</locationY>
+        <actionName>ContractSubjectConfigInvocable</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>contractIds</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+</Flow>

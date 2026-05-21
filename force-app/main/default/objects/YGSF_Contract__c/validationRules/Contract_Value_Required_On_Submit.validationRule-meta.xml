@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Value_Required_On_Submit</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISBLANK(Contract_Value__c), ISPICKVAL(Status__c, "Submitted"))</errorConditionFormula>
+    <errorMessage>Contract value is required before submitting for review.</errorMessage>
+</ValidationRule>

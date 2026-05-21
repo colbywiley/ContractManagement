@@ -1,0 +1,35 @@
+.action-panel {
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  border-left: 5px solid #0176d3;
+}
+
+.panel-info {
+  border-left-color: #0176d3;
+  background-color: #f0f8ff;
+}
+
+.panel-warning {
+  border-left-color: #fe9339;
+  background-color: #fff8f0;
+}
+
+.panel-success {
+  border-left-color: #2e844a;
+  background-color: #f0fff4;
+}
+
+.panel-error {
+  border-left-color: #ea001e;
+  background-color: #fff0f0;
+}
+
+.guidance-text {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #181818;
+}
+
+.role-badge {
+  font-weight: 600;
+}

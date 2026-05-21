@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification for Section 3.2.3 contracts requiring post-execution legal review</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Post Execution Legal Review</name>
+    <style>none</style>
+    <subject>Post-Execution Legal Review Required: {!YGSF_Contract__c.Name}</subject>
+    <type>text</type>
+</EmailTemplate>

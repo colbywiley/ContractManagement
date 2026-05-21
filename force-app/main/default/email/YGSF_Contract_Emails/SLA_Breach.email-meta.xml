@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Alert notification when SLA has been breached for a contract</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>SLA Breach</name>
+    <style>none</style>
+    <subject>SLA BREACH: {!YGSF_Contract__c.Name}</subject>
+    <type>text</type>
+</EmailTemplate>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Electronic_Payment_Requires_CFO</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISPICKVAL(Payment_Method__c, "Electronic"), NOT(CFO_Payment_Approval__c))</errorConditionFormula>
+    <errorMessage>Electronic payment method requires CFO approval prior to contract execution, per YGSF Contract Policy Section 5.3.</errorMessage>
+</ValidationRule>

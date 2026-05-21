@@ -1,7 +1,7 @@
 {
-  "orgName": "Demo company",
+  "orgName": "YGSF Contract Management",
   "edition": "Developer",
-  "features": ["EnableSetPasswordInApi"],
+  "features": ["EnableSetPasswordInApi", "FieldServiceAccess"],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true

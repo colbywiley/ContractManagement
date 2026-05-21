@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Additional_Insured</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Additional_Insured_Required__c, NOT(Additional_Insured_Received__c), ISPICKVAL(Status__c, "Fully Executed"))</errorConditionFormula>
+    <errorMessage>Additional Insured Endorsement must be received before the contract can be fully executed.</errorMessage>
+</ValidationRule>

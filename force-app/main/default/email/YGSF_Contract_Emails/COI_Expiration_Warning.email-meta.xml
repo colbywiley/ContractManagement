@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Warning notification when a Certificate of Insurance is about to expire</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>COI Expiration Warning</name>
+    <style>none</style>
+    <subject>COI Expiring Soon: {!YGSF_Contract__c.Name}</subject>
+    <type>text</type>
+</EmailTemplate>

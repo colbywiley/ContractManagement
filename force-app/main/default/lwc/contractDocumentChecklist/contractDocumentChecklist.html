@@ -1,0 +1,124 @@
+<template>
+    <lightning-card title="Document Checklist" icon-name="standard:file">
+        <div slot="actions">
+            <lightning-button
+                label="Upload Document"
+                icon-name="utility:upload"
+                onclick={handleOpenUpload}
+                class="slds-m-right_x-small">
+            </lightning-button>
+            <lightning-button
+                label="Refresh"
+                icon-name="utility:refresh"
+                onclick={handleRefresh}>
+            </lightning-button>
+        </div>
+
+        <template if:true={isLoading}>
+            <div class="slds-p-around_medium">
+                <lightning-spinner alternative-text="Loading documents" size="small"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:false={isLoading}>
+            <!-- Required Documents Checklist -->
+            <template if:true={hasRequiredDocuments}>
+                <div class="slds-p-horizontal_medium slds-p-top_small">
+                    <h3 class="slds-text-heading_small slds-m-bottom_x-small">Required Documents</h3>
+                    <span class="slds-text-body_small slds-text-color_weak">{checklistSummary}</span>
+                </div>
+                <div class="slds-p-around_medium">
+                    <ul class="slds-has-dividers_bottom-space">
+                        <template for:each={requiredDocuments} for:item="doc">
+                            <li key={doc.id} class="slds-item">
+                                <div class="slds-grid slds-grid_vertical-align-center slds-p-vertical_xx-small">
+                                    <div class="slds-col slds-size_1-of-12">
+                                        <lightning-icon
+                                            icon-name={doc.icon}
+                                            variant={doc.variant}
+                                            size="x-small"
+                                            alternative-text={doc.statusText}>
+                                        </lightning-icon>
+                                    </div>
+                                    <div class="slds-col slds-size_8-of-12">
+                                        <span class="slds-text-body_regular">{doc.label}</span>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-12 slds-text-align_right">
+                                        <lightning-badge label={doc.statusText} class={doc.variant}></lightning-badge>
+                                    </div>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+
+            <template if:false={hasRequiredDocuments}>
+                <div class="slds-p-around_medium slds-text-color_weak">
+                    No required documents for this contract.
+                </div>
+            </template>
+
+            <!-- Uploaded Documents Table -->
+            <template if:true={hasUploadedDocuments}>
+                <div class="slds-p-horizontal_medium slds-p-top_small">
+                    <h3 class="slds-text-heading_small slds-m-bottom_x-small">Uploaded Documents</h3>
+                </div>
+                <lightning-datatable
+                    key-field="id"
+                    data={documentData}
+                    columns={columns}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </template>
+
+            <template if:false={hasUploadedDocuments}>
+                <div class="slds-p-around_medium slds-text-align_center slds-text-color_weak">
+                    <lightning-icon icon-name="utility:info" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                    No documents have been uploaded for this contract.
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+
+    <!-- Upload Modal -->
+    <template if:true={showUploadModal}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={handleCloseUpload}>
+                        <lightning-icon icon-name="utility:close" alternative-text="Close"
+                                        size="small" variant="inverse"></lightning-icon>
+                    </button>
+                    <h2 class="slds-modal__title slds-hyphenate">Upload Document</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-combobox
+                        name="documentType"
+                        label="Document Type"
+                        value={selectedDocumentType}
+                        placeholder="Select document type..."
+                        options={documentTypeOptions}
+                        required
+                        onchange={handleDocumentTypeChange}
+                        class="slds-m-bottom_medium">
+                    </lightning-combobox>
+
+                    <lightning-file-upload
+                        label="Upload File"
+                        name="fileUploader"
+                        accept={acceptedFormats}
+                        record-id={recordId}
+                        onuploadfinished={handleUploadFinished}
+                        multiple>
+                    </lightning-file-upload>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={handleCloseUpload}></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

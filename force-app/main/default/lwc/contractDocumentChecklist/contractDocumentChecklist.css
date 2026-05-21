@@ -1,0 +1,17 @@
+:host {
+    display: block;
+}
+
+.success lightning-badge {
+    --sds-c-badge-color-background: var(--slds-g-color-success-base-50, #2e844a);
+    --sds-c-badge-text-color: #fff;
+}
+
+.warning lightning-badge {
+    --sds-c-badge-color-background: var(--slds-g-color-warning-base-60, #dd7a01);
+    --sds-c-badge-text-color: #fff;
+}
+
+.slds-modal__container {
+    max-width: 40rem;
+}

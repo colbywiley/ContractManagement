@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Contracts</fullName>
+    <columns>NAME</columns>
+    <columns>Contract_Title__c</columns>
+    <columns>Contract_Type__c</columns>
+    <columns>Status__c</columns>
+    <columns>Contract_Value__c</columns>
+    <columns>Submission_Date__c</columns>
+    <columns>SLA_Status__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>My Contracts</label>
+</ListView>

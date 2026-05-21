@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Purchase_Card</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL(Payment_Method__c, "Purchase Card")</errorConditionFormula>
+    <errorMessage>Purchase cards cannot be used to settle payment requirements on any contract or agreement, per YGSF Contract Policy Section 5.3.</errorMessage>
+</ValidationRule>

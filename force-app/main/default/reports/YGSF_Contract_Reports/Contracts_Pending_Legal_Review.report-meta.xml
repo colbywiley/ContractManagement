@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Contract_Title__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Contract_Subject_Picklist__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Submission_Date__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Days_In_Review__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.SLA_Status__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Legal_Reviewer__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Staff_Liaison__c</field>
+    </columns>
+    <description>Contracts currently in legal review</description>
+    <filter>
+        <criteriaItems>
+            <column>YGSF_Contract__c.Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Legal Review In Progress</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Contracts Pending Legal Review</name>
+    <reportType>CustomEntity$YGSF_Contract__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>YGSF_Contract__c.Days_In_Review__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Contract_Title__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.COI_Required__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.COI_Received__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.COI_Expiration_Date__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Staff_Liaison__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Location__c</field>
+    </columns>
+    <description>Contracts with COI expiring within the next 30 days</description>
+    <filter>
+        <criteriaItems>
+            <column>YGSF_Contract__c.COI_Required__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>YGSF_Contract__c.COI_Received__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>COI Expiration Report</name>
+    <reportType>CustomEntity$YGSF_Contract__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>YGSF_Contract__c.COI_Expiration_Date__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>YGSF_Contract__c.COI_Expiration_Date__c</dateColumn>
+        <interval>INTERVAL_NEXT30</interval>
+    </timeFrameFilter>
+</Report>

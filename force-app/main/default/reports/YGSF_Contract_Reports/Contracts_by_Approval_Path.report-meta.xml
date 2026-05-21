@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Contract_Title__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Contract_Value__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Status__c</field>
+    </columns>
+    <columns>
+        <field>YGSF_Contract__c.Contract_Type__c</field>
+    </columns>
+    <aggregates>
+        <calculatedFormula>RowCount</calculatedFormula>
+        <datatype>number</datatype>
+        <description>Total number of contracts</description>
+        <developerName>FORMULA_Contract_Count</developerName>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Contract Count</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>YGSF_Contract__c.Contract_Value__c:SUM</calculatedFormula>
+        <datatype>currency</datatype>
+        <description>Total contract value</description>
+        <developerName>FORMULA_Total_Value</developerName>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Total Value</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <description>Contracts grouped by approval path with counts and total values</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>YGSF_Contract__c.Approval_Path__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Contracts by Approval Path</name>
+    <reportType>CustomEntity$YGSF_Contract__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,7 @@
+:host {
+    display: block;
+}
+
+lightning-progress-indicator {
+    padding: 0.5rem 0;
+}

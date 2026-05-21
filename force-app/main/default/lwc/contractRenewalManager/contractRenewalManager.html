@@ -1,0 +1,98 @@
+<template>
+    <lightning-card title="Renewal Management" icon-name="standard:contract">
+        <template if:true={isLoading}>
+            <div class="slds-p-around_medium">
+                <lightning-spinner alternative-text="Loading renewal data" size="small"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:true={hasError}>
+            <div class="slds-p-around_medium">
+                <div class="slds-text-color_error">
+                    <lightning-icon icon-name="utility:error" size="x-small" variant="error" class="slds-m-right_x-small"></lightning-icon>
+                    {errorMessage}
+                </div>
+            </div>
+        </template>
+
+        <template if:true={hasData}>
+            <!-- Renewal Alert -->
+            <template if:true={showRenewalAlert}>
+                <div class="slds-p-horizontal_medium slds-p-top_medium">
+                    <div class="slds-notify slds-notify_alert alert-banner" role="alert">
+                        <lightning-icon icon-name={renewalAlertIcon} variant={renewalAlertVariant} size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                        <span class="slds-text-body_regular">{renewalAlertMessage}</span>
+                    </div>
+                </div>
+            </template>
+
+            <div class="slds-p-around_medium">
+                <!-- Expiry Status -->
+                <div class={expiryStatusClass}>
+                    <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small">
+                        <lightning-icon icon-name={expiryIcon} variant={expiryVariant} size="small" class="slds-m-right_small"></lightning-icon>
+                        <div>
+                            <span class="slds-text-heading_small expiry-label">{daysUntilExpiryText}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contract Details Grid -->
+                <div class="slds-grid slds-wrap slds-gutters_small slds-m-top_small">
+                    <div class="slds-col slds-size_1-of-2 slds-p-vertical_x-small">
+                        <div class="detail-item">
+                            <span class="slds-text-body_small slds-text-color_weak">End Date</span>
+                            <p class="slds-text-body_regular"><strong>{endDateFormatted}</strong></p>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-p-vertical_x-small">
+                        <div class="detail-item">
+                            <span class="slds-text-body_small slds-text-color_weak">Contract Duration</span>
+                            <p class="slds-text-body_regular"><strong>{contractDurationLabel}</strong></p>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-p-vertical_x-small">
+                        <div class="detail-item">
+                            <span class="slds-text-body_small slds-text-color_weak">Auto-Renew</span>
+                            <p class="slds-text-body_regular">
+                                <lightning-icon icon-name={autoRenewIcon} variant={autoRenewVariant} size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                                <strong>{autoRenewLabel}</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-p-vertical_x-small">
+                        <div class="detail-item">
+                            <span class="slds-text-body_small slds-text-color_weak">Renewal Term</span>
+                            <p class="slds-text-body_regular"><strong>{renewalTermLabel}</strong></p>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-p-vertical_x-small">
+                        <div class="detail-item">
+                            <span class="slds-text-body_small slds-text-color_weak">Renewal Date</span>
+                            <p class="slds-text-body_regular"><strong>{renewalDateFormatted}</strong></p>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-p-vertical_x-small">
+                        <div class="detail-item">
+                            <span class="slds-text-body_small slds-text-color_weak">Status</span>
+                            <p class="slds-text-body_regular"><strong>{status}</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <template if:true={canCreateRenewal}>
+                    <div class="slds-m-top_medium slds-text-align_center">
+                        <lightning-button
+                            variant={renewalButtonVariant}
+                            label={renewalButtonLabel}
+                            icon-name="utility:new"
+                            onclick={handleCreateRenewal}
+                            disabled={isProcessing}>
+                        </lightning-button>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </lightning-card>
+</template>

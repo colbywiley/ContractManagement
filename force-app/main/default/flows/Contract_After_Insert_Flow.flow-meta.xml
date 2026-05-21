@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <description>Record-Triggered Flow that fires after a YGSF_Contract__c record is created. Calls the ContractSubjectConfigInvocable Apex action to auto-populate approval path, legal review, template, insurance, and signatory fields based on the contract subject configuration.</description>
+    <interviewLabel>Contract After Insert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contract After Insert</label>
+    <processType>AutoLaunchedFlow</processType>
+    <status>Active</status>
+
+    <!-- Start: Record-Triggered on YGSF_Contract__c After Insert -->
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Apply_Subject_Config</targetReference>
+        </connector>
+        <object>YGSF_Contract__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+
+    <!-- Call Apex Invocable: ContractSubjectConfigInvocable -->
+    <actionCalls>
+        <name>Apply_Subject_Config</name>
+        <label>Apply Subject Configuration</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <actionName>ContractSubjectConfigInvocable</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>contractIds</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+</Flow>

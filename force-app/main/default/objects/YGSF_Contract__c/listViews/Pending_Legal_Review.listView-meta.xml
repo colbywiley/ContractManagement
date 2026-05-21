@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pending_Legal_Review</fullName>
+    <columns>NAME</columns>
+    <columns>Contract_Title__c</columns>
+    <columns>Contract_Type__c</columns>
+    <columns>Submission_Date__c</columns>
+    <columns>Days_In_Review__c</columns>
+    <columns>SLA_Status__c</columns>
+    <columns>Legal_Reviewer__c</columns>
+    <columns>Staff_Liaison__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Legal Review In Progress</value>
+    </filters>
+    <label>Pending Legal Review</label>
+</ListView>

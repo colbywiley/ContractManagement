@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_ICA_Form</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ICA_Approval_Form_Required__c, NOT(ICA_Approval_Form_Received__c), ISPICKVAL(Status__c, "Submitted"))</errorConditionFormula>
+    <errorMessage>ICA Approval Form must be received before the contract can be submitted for review.</errorMessage>
+</ValidationRule>

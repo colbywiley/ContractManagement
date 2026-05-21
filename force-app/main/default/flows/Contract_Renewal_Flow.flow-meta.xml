@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <description>Screen Flow for contract renewal. Accepts an original contract Id, displays current contract information, allows modification of key values and dates, then creates a new renewal contract and Contract_Renewal__c junction record.</description>
+    <interviewLabel>Contract Renewal {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contract Renewal</label>
+    <processType>Flow</processType>
+    <status>Active</status>
+
+    <!-- Picklist Choice Sets -->
+    <dynamicChoiceSets>
+        <name>renewalTypeChoices</name>
+        <dataType>Picklist</dataType>
+        <displayField>Renewal_Type__c</displayField>
+        <picklistField>Renewal_Type__c</picklistField>
+        <picklistObject>Contract_Renewal__c</picklistObject>
+    </dynamicChoiceSets>
+
+    <dynamicChoiceSets>
+        <name>paymentMethodChoices</name>
+        <dataType>Picklist</dataType>
+        <displayField>Payment_Method__c</displayField>
+        <picklistField>Payment_Method__c</picklistField>
+        <picklistObject>YGSF_Contract__c</picklistObject>
+    </dynamicChoiceSets>
+
+    <!-- Create Renewed Contract -->
+    <recordCreates>
+        <name>Create_Renewed_Contract</name>
+        <label>Create Renewed Contract</label>
+        <locationX>176</locationX>
+        <locationY>638</locationY>
+        <connector>
+            <targetReference>Create_Renewal_Junction</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Contract_Title__c</field>
+            <value>
+                <elementReference>Get_Original_Contract.Contract_Title__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contract_Type__c</field>
+            <value>
+                <elementReference>Get_Original_Contract.Contract_Type__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contract_Subject_Picklist__c</field>
+            <value>
+                <elementReference>Get_Original_Contract.Contract_Subject_Picklist__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Location__c</field>
+            <value>
+                <elementReference>Get_Original_Contract.Location__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Counterparty_Name__c</field>
+            <value>
+                <elementReference>Get_Original_Contract.Counterparty_Name__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Counterparty_Account__c</field>
+            <value>
+                <elementReference>Get_Original_Contract.Counterparty_Account__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Counterparty_Contact__c</field>
+            <value>
+                <elementReference>Get_Original_Contract.Counterparty_Contact__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contract_Value__c</field>
+            <value>
+                <elementReference>New_Contract_Value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Start_Date__c</field>
+            <value>
+                <elementReference>New_Start_Date</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>End_Date__c</field>
+            <value>
+                <elementReference>New_End_Date</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Payment_Method__c</field>
+            <value>
+                <elementReference>New_Payment_Method</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Auto_Renew__c</field>
+            <value>
+                <elementReference>Get_Original_Contract.Auto_Renew__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Renewal_Term_Months__c</field>
+            <value>
+                <elementReference>Get_Original_Contract.Renewal_Term_Months__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Staff_Liaison__c</field>
+            <value>
+                <elementReference>Get_Original_Contract.Staff_Liaison__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description__c</field>
+            <value>
+                <elementReference>Get_Original_Contract.Description__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Draft</stringValue>
+            </value>
+        </inputAssignments>
+        <object>YGSF_Contract__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+
+    <!-- Create Contract_Renewal__c Junction Record -->
+    <recordCreates>
+        <name>Create_Renewal_Junction</name>
+        <label>Create Renewal Junction Record</label>
+        <locationX>176</locationX>
+        <locationY>758</locationY>
+        <connector>
+            <targetReference>Update_Original_Status</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Original_Contract__c</field>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Renewed_Contract__c</field>
+            <value>
+                <elementReference>Create_Renewed_Contract</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Renewal_Date__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Renewal_Type__c</field>
+            <value>
+                <elementReference>Renewal_Type</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Previous_Value__c</field>
+            <value>
+                <elementReference>Get_Original_Contract.Contract_Value__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>New_Value__c</field>
+            <value>
+                <elementReference>New_Contract_Value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Notes__c</field>
+            <value>
+                <elementReference>Renewal_Notes</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Contract_Renewal__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+
+    <!-- Get Original Contract -->
+    <recordLookups>
+        <name>Get_Original_Contract</name>
+        <label>Get Original Contract</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <connector>
+            <targetReference>Original_Contract_Review</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>YGSF_Contract__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+
+    <!-- Update Original Contract Status to Renewed -->
+    <recordUpdates>
+        <name>Update_Original_Status</name>
+        <label>Update Original Contract Status</label>
+        <locationX>176</locationX>
+        <locationY>878</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Renewed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Renewal_Date__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <object>YGSF_Contract__c</object>
+    </recordUpdates>
+
+    <!-- Screen 1: Original Contract Review -->
+    <screens>
+        <name>Original_Contract_Review</name>
+        <label>Original Contract Information</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Renewal_Details</targetReference>
+        </connector>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+        <fields>
+            <name>Original_Info_Header</name>
+            <fieldType>DisplayText</fieldType>
+            <fieldText>&lt;p&gt;&lt;b&gt;Original Contract Information&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Contract Title:&lt;/b&gt; {!Get_Original_Contract.Contract_Title__c}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Contract Type:&lt;/b&gt; {!Get_Original_Contract.Contract_Type__c}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Contract Subject:&lt;/b&gt; {!Get_Original_Contract.Contract_Subject_Picklist__c}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Counterparty:&lt;/b&gt; {!Get_Original_Contract.Counterparty_Name__c}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Current Value:&lt;/b&gt; {!Get_Original_Contract.Contract_Value__c}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Start Date:&lt;/b&gt; {!Get_Original_Contract.Start_Date__c}&lt;/p&gt;&lt;p&gt;&lt;b&gt;End Date:&lt;/b&gt; {!Get_Original_Contract.End_Date__c}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Status:&lt;/b&gt; {!Get_Original_Contract.Status__c}&lt;/p&gt;</fieldText>
+        </fields>
+    </screens>
+
+    <!-- Screen 2: Renewal Details -->
+    <screens>
+        <name>Renewal_Details</name>
+        <label>Renewal Details</label>
+        <locationX>176</locationX>
+        <locationY>398</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Renewal_Confirm</targetReference>
+        </connector>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+        <fields>
+            <name>Section_Renewal_Header</name>
+            <fieldType>DisplayText</fieldType>
+            <fieldText>&lt;p&gt;&lt;b&gt;Enter the details for the renewed contract. Fields are pre-populated from the original.&lt;/b&gt;&lt;/p&gt;</fieldText>
+        </fields>
+        <fields>
+            <name>Renewal_Type</name>
+            <choiceReferences>renewalTypeChoices</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Renewal Type</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>New_Contract_Value</name>
+            <dataType>Currency</dataType>
+            <defaultValue>
+                <elementReference>Get_Original_Contract.Contract_Value__c</elementReference>
+            </defaultValue>
+            <fieldText>New Contract Value</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <scale>2</scale>
+        </fields>
+        <fields>
+            <name>New_Start_Date</name>
+            <dataType>Date</dataType>
+            <fieldText>New Start Date</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>New_End_Date</name>
+            <dataType>Date</dataType>
+            <fieldText>New End Date</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>New_Payment_Method</name>
+            <choiceReferences>paymentMethodChoices</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Payment Method</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Renewal_Notes</name>
+            <fieldText>Renewal Notes</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+        </fields>
+    </screens>
+
+    <!-- Screen 3: Confirm Renewal -->
+    <screens>
+        <name>Renewal_Confirm</name>
+        <label>Confirm Renewal</label>
+        <locationX>176</locationX>
+        <locationY>518</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Create_Renewed_Contract</targetReference>
+        </connector>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+        <fields>
+            <name>Confirm_Summary</name>
+            <fieldType>DisplayText</fieldType>
+            <fieldText>&lt;p&gt;&lt;b&gt;Confirm Renewal Details&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Original Contract:&lt;/b&gt; {!Get_Original_Contract.Contract_Title__c}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Renewal Type:&lt;/b&gt; {!Renewal_Type}&lt;/p&gt;&lt;p&gt;&lt;b&gt;New Value:&lt;/b&gt; {!New_Contract_Value}&lt;/p&gt;&lt;p&gt;&lt;b&gt;New Start Date:&lt;/b&gt; {!New_Start_Date}&lt;/p&gt;&lt;p&gt;&lt;b&gt;New End Date:&lt;/b&gt; {!New_End_Date}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Payment Method:&lt;/b&gt; {!New_Payment_Method}&lt;/p&gt;&lt;p&gt;&lt;b&gt;Notes:&lt;/b&gt; {!Renewal_Notes}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Click &lt;b&gt;Finish&lt;/b&gt; to create the renewal contract.&lt;/p&gt;</fieldText>
+        </fields>
+    </screens>
+
+    <!-- Error Screen -->
+    <screens>
+        <name>Error_Screen</name>
+        <label>Error</label>
+        <locationX>440</locationX>
+        <locationY>158</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+        <fields>
+            <name>Error_Message</name>
+            <fieldType>DisplayText</fieldType>
+            <fieldText>&lt;p&gt;&lt;b style="color: red;"&gt;An error occurred while retrieving the original contract.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Please verify the contract record exists and you have access, then try again.&lt;/p&gt;&lt;p&gt;Error: {!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
+        </fields>
+    </screens>
+
+    <!-- Start -->
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Original_Contract</targetReference>
+        </connector>
+    </start>
+
+    <!-- Input Variable: Original Contract Id -->
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+
+    <!-- Output Variable: New Contract Id -->
+    <variables>
+        <name>varNewContractId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>
